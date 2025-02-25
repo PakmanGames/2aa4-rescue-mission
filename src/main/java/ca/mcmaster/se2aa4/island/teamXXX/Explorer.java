@@ -1,12 +1,13 @@
 package ca.mcmaster.se2aa4.island.teamXXX;
 
 import java.io.StringReader;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import eu.ace_design.island.bot.IExplorerRaid;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import eu.ace_design.island.bot.IExplorerRaid;
 
 public class Explorer implements IExplorerRaid {
 
@@ -46,6 +47,8 @@ public class Explorer implements IExplorerRaid {
     @Override
     public String deliverFinalReport() {
         return "no creek found";
-    }
+    } 
+    
+    //TEST
 
 }
