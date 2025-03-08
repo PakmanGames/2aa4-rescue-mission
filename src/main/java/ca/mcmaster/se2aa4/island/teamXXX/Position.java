@@ -30,7 +30,9 @@ public class Position {
         return "(" + x + ", " + y + ")";
     }
 
-    public Boolean equals(Position p) {
-        return this.x == p.getX() && this.y == p.getY();
+    @Override
+    public boolean equals(Object p) {
+        Position position = (Position) p;
+        return this.x == position.getX() && this.y == position.getY();
     }
 }
