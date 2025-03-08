@@ -36,4 +36,13 @@ public enum Direction {
     public Direction getRight() {
         return right;
     }
+
+    @Override
+    public String toString() {
+        return abbr;
+    }
+
+    public Boolean equals(Direction d) {
+        return this.abbr.equals(d.abbr);
+    }
 }
