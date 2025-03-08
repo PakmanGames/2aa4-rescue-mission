@@ -24,4 +24,13 @@ public class Position {
     public void setY(int y) {
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
+    }
+
+    public Boolean equals(Position p) {
+        return this.x == p.getX() && this.y == p.getY();
+    }
 }
