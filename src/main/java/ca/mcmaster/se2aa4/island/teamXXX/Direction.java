@@ -37,27 +37,15 @@ public enum Direction {
         return right;
     }
 
-    public Direction getOppositeDirection() {
-        switch (this) {
-            case NORTH:
-                return SOUTH;
-            case EAST:
-                return WEST;
-            case SOUTH:
-                return NORTH;
-            case WEST:
-                return EAST;
-            default:
-                return null;
-        }
-    }
-
     @Override
     public String toString() {
         return abbr;
     }
 
-    public Boolean equals(String abbr) {
-        return this.getAbbr().equals(abbr);
+    public static Direction getFromAbbr(String abbr) {
+        for (Direction dir : Direction.values())
+            if (dir.getAbbr().equals(abbr))
+                return dir;
+        return null;
     }
 }
