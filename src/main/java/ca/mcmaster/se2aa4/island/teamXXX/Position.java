@@ -32,6 +32,8 @@ public class Position {
 
     @Override
     public boolean equals(Object p) {
+        if (p == null || !(p instanceof Position))
+            return false;
         Position position = (Position) p;
         return this.x == position.getX() && this.y == position.getY();
     }
