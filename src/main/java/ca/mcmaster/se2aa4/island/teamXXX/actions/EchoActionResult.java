@@ -15,7 +15,7 @@ public record EchoActionResult(
                 /**
                  * Whether the detected element is ground or out of range.
                  */
-                boolean foundGround) {
+                boolean foundGround)'' {
 
         @Override
         public String toString() {
