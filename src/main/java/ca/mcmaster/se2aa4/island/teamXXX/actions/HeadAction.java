@@ -1,8 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
 import org.json.JSONObject;
-
-import ca.mcmaster.se2aa4.island.teamXXX.actions.DroneAction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 
@@ -16,14 +14,14 @@ public class HeadAction implements DroneAction {
     }
 
     @Override
-    public boolean execute() {
+    public String execute() {
         Direction currentDirection = drone.getDirection();
         int angleDifference = currentDirection.angleTo(targetDirection);
 
         // Reject turns that are more than 180 degrees
         if (angleDifference > 180) {
             System.out.println("Turn is greater than 180 degrees, turn action rejected.");
-            return false;
+            return "Reject";
         }
 
         // Handle 90-degree turns
@@ -51,6 +49,6 @@ public class HeadAction implements DroneAction {
         parameters.put("targetDirection", targetDirection.toString());
 
         command.put("parameters", parameters);
-        return true;
+        return "Accepted";
     }
 }
