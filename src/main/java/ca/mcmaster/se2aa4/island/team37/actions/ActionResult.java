@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team37.actions;
 
 import org.json.JSONObject;
 
@@ -29,7 +29,7 @@ public class ActionResult {
      * @param json creates it from the JSON parameters
      */
     public ActionResult(JSONObject json) {
-
+        
     }
 
     /**

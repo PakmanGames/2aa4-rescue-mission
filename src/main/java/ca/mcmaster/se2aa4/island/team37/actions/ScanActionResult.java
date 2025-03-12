@@ -1,8 +1,8 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team37.actions;
 
 import java.util.List;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
+import ca.mcmaster.se2aa4.island.team37.drone.POI;
 
 /**
  * Represents the result of a scan action.
