@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.drone;
+package ca.mcmaster.se2aa4.island.team37.drone;
 
 /**
  * Represents the type of a point of interest.

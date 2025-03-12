@@ -3,6 +3,8 @@ package ca.mcmaster.se2aa4.island.teamXXX;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.mcmaster.se2aa4.island.team37.Explorer;
+
 public class DirectionTest {
     private ExplorerFactory explorerFactory;
     // This for the test cases
