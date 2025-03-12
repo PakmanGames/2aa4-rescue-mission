@@ -1,0 +1,56 @@
+package ca.mcmaster.se2aa4.island.teamXXX.actions;
+
+import org.json.JSONObject;
+
+import ca.mcmaster.se2aa4.island.teamXXX.actions.DroneAction;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
+
+public class HeadAction implements DroneAction {
+    private final Drone drone;
+    private final Direction targetDirection;
+
+    public HeadAction(Drone drone, Direction targetDirection) {
+        this.drone = drone;
+        this.targetDirection = targetDirection;
+    }
+
+    @Override
+    public boolean execute() {
+        Direction currentDirection = drone.getDirection();
+        int angleDifference = currentDirection.angleTo(targetDirection);
+
+        // Reject turns that are more than 180 degrees
+        if (angleDifference > 180) {
+            System.out.println("Turn is greater than 180 degrees, turn action rejected.");
+            return false;
+        }
+
+        // Handle 90-degree turns
+        if (angleDifference == 90) {
+            if (currentDirection.getRight() == targetDirection) {
+                drone.fly();
+                drone.setDirection(targetDirection);
+                drone.fly();
+                System.out.println("Turning right 90 degrees.");
+            } else {
+                drone.fly();
+                drone.setDirection(targetDirection);
+                drone.fly();
+                System.out.println("Turning left 90 degrees.");
+            }
+        } else {
+            System.out.println("Already heading to target direction.");
+        }
+
+        JSONObject command = new JSONObject();
+        command.put("action", "head");
+
+        JSONObject parameters = new JSONObject();
+        parameters.put("currentDirection", currentDirection.toString());
+        parameters.put("targetDirection", targetDirection.toString());
+
+        command.put("parameters", parameters);
+        return true;
+    }
+}

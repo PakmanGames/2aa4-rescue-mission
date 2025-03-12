@@ -48,4 +48,18 @@ public enum Direction {
                 return dir;
         return null;
     }
+
+    public int angleTo(Direction target) {//calculate the angle difference between current direction and target direction
+        int currentIndex = this.ordinal();
+        int targetIndex = target.ordinal();
+        int diff = Math.abs(currentIndex - targetIndex);
+        
+        if (diff > 2) {
+            diff = 4 - diff;//so that the angle difference won't be 270 degrees
+        }
+
+        return diff * 90;  
+    }
+
+    }
 }
