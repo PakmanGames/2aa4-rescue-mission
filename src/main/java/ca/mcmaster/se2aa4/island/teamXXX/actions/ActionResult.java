@@ -1,6 +1,14 @@
 package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POIType;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 
 /**
  * Represents the result of an action.
@@ -29,7 +37,37 @@ public class ActionResult {
      * @param json creates it from the JSON parameters
      */
     public ActionResult(JSONObject json) {
+        this.cost = json.getInt("cost");
+        this.status = json.getBoolean("status");
 
+        if (json.has("echoResult")) {
+            JSONObject echoJson = json.getJSONObject("echoResult");
+            this.echoResult = new EchoActionResult(echoJson.getInt("range"), echoJson.getBoolean("foundGround"));
+        } else {
+            this.echoResult = null;
+        }
+
+        if (json.has("scanResult")) {
+            JSONObject scanJson = json.getJSONObject("scanResult");
+            List<POI> creeks = new ArrayList<>();
+            List<POI> sites = new ArrayList<>();
+            JSONArray creeksArray = scanJson.getJSONArray("creeks");
+            JSONArray sitesArray = scanJson.getJSONArray("sites");
+
+            // this lowky looks chopped
+            for (int i = 0; i < creeksArray.length(); i++) {
+                creeks.add(new POI(Integer.toString(i),new Position(creeksArray.getJSONObject(i).getInt("x"), creeksArray.getJSONObject(i).getInt("y")), POIType.CREEK));
+            }
+
+            // this as well
+            for (int i = 0; i < sitesArray.length(); i++) {
+                sites.add(new POI(Integer.toString(i),new Position(sitesArray.getJSONObject(i).getInt("x"), sitesArray.getJSONObject(i).getInt("y")), POIType.SITE));
+            }
+
+            this.scanResult = new ScanActionResult(creeks, sites);
+        } else {
+            this.scanResult = null;
+        }
     }
 
     /**
