@@ -1,44 +1,41 @@
 package ca.mcmaster.se2aa4.island.teamXXX.drone;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import ca.mcmaster.se2aa4.island.teamXXX.actions.DroneAction;
+import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
 
 public class Drone {
-    private Map<String, DroneAction> actions = new HashMap<>();
     private Direction direction;
     private Position position;
     private int batteryLevel;
+    private ActionManager actionManager;
 
-    public Drone(Direction initialDirection, Position initialPosition,int batteryLevel) {
+    public Drone(Direction initialDirection, Position initialPosition, int batteryLevel, ActionManager actionManager) {
         this.direction = initialDirection;
         this.position = initialPosition;
         this.batteryLevel = batteryLevel;
-
+        this.actionManager = actionManager;
     }
 
     public String fly() {
-        return actions.get("fly").execute();
+        return actionManager.createFlyCommand();
     }
 
     public String scan() {
-        return actions.get("scan").execute();
+        return actionManager.createScanCommand();
     }
 
     public String echo(Direction direction) {
-        return actions.get("echo").execute();
+        return actionManager.createEchoCommand(direction);
     }
 
-    public String turn(Direction targetDirection){
-        return actions.get("head").execute(); 
+    public String turn(Direction targetDirection) {
+        return actionManager.createHeadingCommand(targetDirection);
     }
 
-    public void setDirection(Direction direction){
+    public String stop() {
+        return actionManager.createStopCommand();
+    }
+
+    public void setDirection(Direction direction) {
         this.direction = direction;
-    }
-
-    public Direction getDirection(){
-        return direction;
     }
 }
