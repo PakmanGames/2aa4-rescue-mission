@@ -23,19 +23,15 @@ public class Drone {
         return actionManager.createScanCommand();
     }
 
-    public String echo(Direction direction) {
-        return actionManager.createEchoCommand(direction);
+    public String echo(Direction heading) {
+        return actionManager.createEchoCommand(heading);
     }
 
-    public String turn(Direction targetDirection) {
-        return actionManager.createHeadingCommand(targetDirection);
+    public String head(Direction heading) {
+        return actionManager.createHeadingCommand(heading);
     }
 
     public String stop() {
         return actionManager.createStopCommand();
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
     }
 }
