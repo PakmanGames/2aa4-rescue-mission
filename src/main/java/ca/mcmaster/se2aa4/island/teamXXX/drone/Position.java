@@ -37,4 +37,8 @@ public class Position {
         Position position = (Position) p;
         return this.x == position.getX() && this.y == position.getY();
     }
+
+    public double distanceTo(Position p) {
+        return Math.hypot(this.x - p.getX(), this.y - p.getY());
+    }
 }
