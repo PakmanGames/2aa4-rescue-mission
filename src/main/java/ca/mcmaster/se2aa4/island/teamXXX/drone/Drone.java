@@ -61,4 +61,8 @@ public class Drone {
     public JSONObject stop() {
         return actionManager.createStopCommand();
     }
+
+    public void expend(int cost) {
+        batteryLevel -= cost;
+    }
 }

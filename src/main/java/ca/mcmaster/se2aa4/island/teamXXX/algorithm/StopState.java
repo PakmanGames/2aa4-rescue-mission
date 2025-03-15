@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.mvp;
+package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
 import org.json.JSONObject;
 
@@ -13,14 +13,12 @@ public class StopState extends State {
 
     @Override
     public State nextState(ActionResult action) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nextState'");
+        return this;
     }
 
     @Override
     public JSONObject getAction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAction'");
+        return getDrone().stop();
     }
 
 }
