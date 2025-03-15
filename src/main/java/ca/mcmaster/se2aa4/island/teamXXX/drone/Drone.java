@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.island.teamXXX.drone;
 
+import org.json.JSONObject;
+
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
 
 public class Drone {
@@ -40,23 +42,23 @@ public class Drone {
         return mapInfo;
     }
 
-    public String fly() {
+    public JSONObject fly() {
         return actionManager.createFlyCommand();
     }
 
-    public String scan() {
+    public JSONObject scan() {
         return actionManager.createScanCommand();
     }
 
-    public String echo(Direction heading) {
+    public JSONObject echo(Direction heading) {
         return actionManager.createEchoCommand(heading);
     }
 
-    public String head(Direction heading) {
+    public JSONObject head(Direction heading) {
         return actionManager.createHeadingCommand(heading);
     }
 
-    public String stop() {
+    public JSONObject stop() {
         return actionManager.createStopCommand();
     }
 }

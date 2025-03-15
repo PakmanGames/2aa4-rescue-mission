@@ -18,10 +18,10 @@ public class ActionManager {
      * 
      * @return the JSON string representing the fly forward command
      */
-    public String createFlyCommand() {
+    public JSONObject createFlyCommand() {
         JSONObject command = new JSONObject();
         command.put("action", "fly");
-        return command.toString();
+        return command;
     }
 
     /**
@@ -35,7 +35,7 @@ public class ActionManager {
      * @param heading the direction to turn
      * @return the command for the drone to change its heading
      */
-    public String createHeadingCommand(Direction heading) {
+    public JSONObject createHeadingCommand(Direction heading) {
         JSONObject command = new JSONObject();
         command.put("action", "heading");
 
@@ -45,7 +45,7 @@ public class ActionManager {
 
         // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
         command.put("parameters", parameters);
-        return command.toString();
+        return command;
     }
 
     /**
@@ -58,7 +58,7 @@ public class ActionManager {
      * @param heading the direction to turn
      * @return the command for land detection
      */
-    public String createEchoCommand(Direction heading) {
+    public JSONObject createEchoCommand(Direction heading) {
         JSONObject command = new JSONObject();
         command.put("action", "echo");
 
@@ -68,7 +68,7 @@ public class ActionManager {
 
         // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
         command.put("parameters", parameters);
-        return command.toString();
+        return command;
     }
 
     /**
@@ -77,10 +77,10 @@ public class ActionManager {
      * 
      * @return the JSON string representing the scan command
      */
-    public String createScanCommand() {
+    public JSONObject createScanCommand() {
         JSONObject command = new JSONObject();
         command.put("action", "scan");
-        return command.toString();
+        return command;
     }
 
     /**
@@ -89,10 +89,10 @@ public class ActionManager {
      * 
      * @return the JSON string representing the stop command
      */
-    public String createStopCommand() {
+    public JSONObject createStopCommand() {
         JSONObject command = new JSONObject();
         command.put("action", "stop");
-        return command.toString();
+        return command;
     }
 
 }
