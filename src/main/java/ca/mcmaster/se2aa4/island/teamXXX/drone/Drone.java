@@ -32,7 +32,7 @@ public class Drone {
     }
 
     // Sets the initial position of the drone
-    public void initializePosition(Position position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 

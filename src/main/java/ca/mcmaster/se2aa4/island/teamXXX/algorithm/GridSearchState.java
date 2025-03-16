@@ -2,24 +2,118 @@ package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
+import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionType;
+import ca.mcmaster.se2aa4.island.teamXXX.actions.ScanActionResult;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.MapInfo;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POIType;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 
+/**
+ * Start state of the drone algorithm
+ * This state will be grid-searching the map trying to pick up any creeks and
+ * sites of interest
+ * 
+ * For MVP, we will assume that the drone starts at (1,1)
+ */
 public class GridSearchState extends State {
+    /// The algorithm
+    /// If the drone is not facing the end of the map (vertically) do the following
+    /// 1. Move forward
+    /// 2. scan the area and add any poi's found to the map
+    /// Else if the drone is at the end of the map (horizontally) do the following
+    /// 1. stop
+    /// Else
+    /// 1. If facing south, turn left, then left
+    /// 2. If facing north, turn right, then right
+    private Action action;
+    private Direction currentDirection;
+    private boolean changingDirection;
 
     public GridSearchState(Drone drone) {
         super(drone);
+        currentDirection = drone.getDirection();
+        // Dummy fly action
+        action = drone.fly();
+        changingDirection = false;
     }
 
     @Override
-    public State nextState(ActionResult action) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nextState'");
+    public State nextState(ActionResult result) {
+
+        Drone drone = getDrone();
+        drone.expend(result.getCost());
+
+        Position position = drone.getPosition();
+        MapInfo mapInfo = drone.getMapInfo();
+
+        if (action.type() == ActionType.FLY) {
+
+            // Direction DOWN or Direction UP
+            if (drone.getDirection() == Direction.SOUTH) {
+                // If the drone is not facing the end of the map (vertically) do the following
+                if (position.getY() + 6 >= mapInfo.getHeight() && position.getX() + 6 < mapInfo.getWidth()) {
+                    return new StopState(drone);
+                }
+            } else if (drone.getDirection() == Direction.NORTH) {
+                if (position.getY() - 6 < 1 && position.getX() + 6 < mapInfo.getWidth()) {
+                    return new StopState(drone);
+                }
+
+            }
+
+        } else if (action.type() == ActionType.SCAN) {
+
+            // Perform the scanning
+            ScanActionResult scanResult = result.getScanResult();
+
+            // Add the POIs to the map
+            for (String id : scanResult.sites())
+                mapInfo.addPOI(new POI(id, position, POIType.SITE));
+
+            // Add the creeks to the map
+            for (String id : scanResult.creeks())
+                mapInfo.addPOI(new POI(id, position, POIType.CREEK));
+
+        } else if (action.type() == ActionType.HEADING) {
+            drone.setDirection(currentDirection);
+        }
+
+        return this;
     }
 
     @Override
     public Action getAction() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAction'");
+        Drone drone = getDrone();
+        Position position = drone.getPosition();
+        MapInfo mapInfo = drone.getMapInfo();
+
+        if (action.type() == ActionType.FLY) {
+            action = drone.scan();
+        } else if (action.type() == ActionType.HEADING) {
+            if (changingDirection) {
+                changingDirection = false;
+                action = drone.scan();
+            } else {
+                changingDirection = true;
+                action = drone.head(currentDirection);
+            }
+
+        } else if (action.type() == ActionType.SCAN) {
+            if (drone.getDirection() == Direction.SOUTH && position.getY() + 6 >= mapInfo.getHeight()) {
+                // If the drone is not facing the end of the map (vertically) do the following
+                action = drone.head(currentDirection.left());
+            } else if (drone.getDirection() == Direction.NORTH && position.getY() - 6 < 1) {
+                // If the drone is not facing the end of the map (vertically) do the following
+                action = drone.head(currentDirection.right());
+            } else {
+                action = drone.fly();
+            }
+        }
+
+        return action;
     }
 
 }

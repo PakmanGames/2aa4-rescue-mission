@@ -45,6 +45,15 @@ public class StartState extends State {
             drone.setDirection(currentDirection);
 
             if (dimensions.size() == 4) {
+                // Update the position of the drone and move to grid search state
+                int height = (dimensions.get(Direction.NORTH) + dimensions.get(Direction.SOUTH) + 1) * 3;
+                int width = (dimensions.get(Direction.EAST) + dimensions.get(Direction.WEST) + 1) * 3;
+
+                // update dimensions and position
+                drone.getMapInfo().setDimensions(height, width);
+                drone.setPosition(
+                        new Position(dimensions.get(Direction.WEST) * 3, dimensions.get(Direction.NORTH) * 3));
+
                 // If all directions have been checked, move to (1,1)
                 return new GridSearchState(drone);
             }

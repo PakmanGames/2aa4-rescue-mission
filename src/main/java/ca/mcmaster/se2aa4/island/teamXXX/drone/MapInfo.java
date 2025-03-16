@@ -40,11 +40,16 @@ public class MapInfo {
         this.height = height;
     }
 
+    public void setDimensions(int height, int width) {
+        this.height = height;
+        this.width = width;
+    }
+
     public List<POI> getCreeks() {
         return creeks;
     }
 
-    public void addCreek(POI creek) {
+    private void addCreek(POI creek) {
         creeks.add(creek);
     }
 
