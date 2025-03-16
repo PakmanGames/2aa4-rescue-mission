@@ -1,15 +1,12 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionType;
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ScanActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.MapInfo;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POIType;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
+import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 /**
  * Start state of the drone algorithm
@@ -45,6 +42,7 @@ public class GridSearchState extends State {
 
         Drone drone = getDrone();
         drone.expend(result.getCost());
+        action.consume(drone, result);
 
         Position position = drone.getPosition();
         MapInfo mapInfo = drone.getMapInfo();
@@ -64,21 +62,6 @@ public class GridSearchState extends State {
 
             }
 
-        } else if (action.type() == ActionType.SCAN) {
-
-            // Perform the scanning
-            ScanActionResult scanResult = result.getScanResult();
-
-            // Add the POIs to the map
-            for (String id : scanResult.sites())
-                mapInfo.addPOI(new POI(id, position, POIType.SITE));
-
-            // Add the creeks to the map
-            for (String id : scanResult.creeks())
-                mapInfo.addPOI(new POI(id, position, POIType.CREEK));
-
-        } else if (action.type() == ActionType.HEADING) {
-            drone.setDirection(currentDirection);
         }
 
         return this;

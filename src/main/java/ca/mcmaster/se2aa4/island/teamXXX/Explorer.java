@@ -9,11 +9,11 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.algorithm.GridSearchDroneAlgorithm;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.DroneAlgorithm;
+import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public class Explorer implements IExplorerRaid {
 

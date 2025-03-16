@@ -3,11 +3,11 @@ package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 import java.util.Map;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionType;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
+import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 /**
  * Start state of the drone algorithm
@@ -19,13 +19,12 @@ import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 public class StartState extends State {
 
     private Map<Direction, Integer> dimensions;
-    private Direction currentDirection;
     private Action action;
     private boolean start;
 
     public StartState(Drone drone) {
         super(drone);
-        currentDirection = drone.getDirection();
+        drone.setPosition(new Position(1, 1));
         start = true;
     }
 
@@ -33,6 +32,9 @@ public class StartState extends State {
     public State nextState(ActionResult result) {
         Drone drone = getDrone();
         drone.expend(result.getCost());
+        action.consume(drone, result);
+
+        Direction currentDirection = drone.getDirection();
 
         // If you are checking out the range of the direction
         if (action.type() == ActionType.ECHO) {
@@ -51,8 +53,6 @@ public class StartState extends State {
 
                 // update dimensions and position
                 drone.getMapInfo().setDimensions(height, width);
-                drone.setPosition(
-                        new Position(dimensions.get(Direction.WEST) * 3, dimensions.get(Direction.NORTH) * 3));
 
                 // If all directions have been checked, move to (1,1)
                 return new GridSearchState(drone);
@@ -68,17 +68,16 @@ public class StartState extends State {
     @Override
     public Action getAction() {
         Drone drone = getDrone();
+        Direction currentDirection = drone.getDirection();
 
         // Turn right if it is the first action
         if (start) {
             start = false;
 
-            currentDirection = currentDirection.right();
-            action = drone.head(currentDirection);
+            action = drone.head(currentDirection.right());
         } else if (dimensions.containsKey(currentDirection)) {
             // If the direction has been checked, move to the next direction
-            currentDirection = currentDirection.left();
-            action = drone.head(currentDirection);
+            action = drone.head(currentDirection.left());
 
         } else {
             action = drone.echo(currentDirection);

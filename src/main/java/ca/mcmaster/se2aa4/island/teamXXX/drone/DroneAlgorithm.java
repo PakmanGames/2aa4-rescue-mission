@@ -3,7 +3,7 @@ package ca.mcmaster.se2aa4.island.teamXXX.drone;
 import org.json.JSONObject;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
+import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public abstract class DroneAlgorithm {
     private Drone drone;
@@ -27,13 +27,20 @@ public abstract class DroneAlgorithm {
             return "no creek found";
         } else {
             POI site = mapInfo.getEmergencySite();
-            POI creek = mapInfo.getNearestCreek();
 
-            JSONObject obj = new JSONObject();
-            obj.put("emergency_site", site.id());
-            obj.put("nearest_creek", creek.id());
+            if (site != null) {
+                POI creek = mapInfo.getNearestCreek();
 
-            return obj.toString();
+                JSONObject obj = new JSONObject();
+                obj.put("emergency_site", site.id());
+                obj.put("nearest_creek", creek.id());
+
+                return obj.toString();
+            } else {
+                JSONObject obj = new JSONObject();
+                obj.put("creek", mapInfo.getCreeks().get(0).id());
+                return obj.toString();
+            }
         }
     }
 }
