@@ -38,35 +38,19 @@ public class ActionResult {
      */
     public ActionResult(JSONObject json) {
         this.cost = json.getInt("cost");
-        this.status = json.getBoolean("status");
+        this.status = json.getString("status").equals("OK");
+        JSONObject extras = json.getJSONObject("extras");
 
-        if (json.has("echoResult")) {
-            JSONObject echoJson = json.getJSONObject("echoResult");
-            this.echoResult = new EchoActionResult(echoJson.getInt("range"), echoJson.getBoolean("foundGround"));
-        } else {
-            this.echoResult = null;
-        }
+        if (extras.has("range")) {
+            echoResult = new EchoActionResult(extras.getInt("range"), extras.getString("found").equals("GROUND"));
+        } else if (extras.has("biomes")) {
+            List<String> creeks = new ArrayList<>();
+            List<String> sites = new ArrayList<>();
 
-        if (json.has("scanResult")) {
-            JSONObject scanJson = json.getJSONObject("scanResult");
-            List<POI> creeks = new ArrayList<>();
-            List<POI> sites = new ArrayList<>();
-            JSONArray creeksArray = scanJson.getJSONArray("creeks");
-            JSONArray sitesArray = scanJson.getJSONArray("sites");
+            extras.getJSONArray("creeks").toList().stream().map(Object::toString).forEach(creeks::add);
+            extras.getJSONArray("sites").toList().stream().map(Object::toString).forEach(sites::add);
 
-            // this lowky looks chopped
-            for (int i = 0; i < creeksArray.length(); i++) {
-                creeks.add(new POI(Integer.toString(i),new Position(creeksArray.getJSONObject(i).getInt("x"), creeksArray.getJSONObject(i).getInt("y")), POIType.CREEK));
-            }
-
-            // this as well
-            for (int i = 0; i < sitesArray.length(); i++) {
-                sites.add(new POI(Integer.toString(i),new Position(sitesArray.getJSONObject(i).getInt("x"), sitesArray.getJSONObject(i).getInt("y")), POIType.SITE));
-            }
-
-            this.scanResult = new ScanActionResult(creeks, sites);
-        } else {
-            this.scanResult = null;
+            scanResult = new ScanActionResult(creeks, sites);
         }
     }
 
