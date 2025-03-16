@@ -1,5 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
@@ -24,6 +25,7 @@ public class StartState extends State {
 
     public StartState(Drone drone) {
         super(drone);
+        dimensions = new HashMap<>();
         drone.setPosition(new Position(1, 1));
         start = true;
     }

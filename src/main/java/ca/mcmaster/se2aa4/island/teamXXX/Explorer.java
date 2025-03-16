@@ -30,7 +30,6 @@ public class Explorer implements IExplorerRaid {
         Integer batteryLevel = info.getInt("budget");
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
-        logger.info("Initializing the drone right nowwww----------------------------------");
 
         drone = new Drone(Direction.getFromAbbr(direction), batteryLevel, new ActionManager());
         algorithm = new GridSearchDroneAlgorithm(drone);
@@ -43,6 +42,7 @@ public class Explorer implements IExplorerRaid {
         JSONObject decision = algorithm.takeDecision().json();
         logger.info("** Decision: {}", decision.toString());
         return decision.toString();
+        // return "{ 'action' : 'stop' }";
     }
 
     @Override
@@ -55,13 +55,22 @@ public class Explorer implements IExplorerRaid {
         logger.info("The status of the drone is {}", status);
         JSONObject extraInfo = response.getJSONObject("extras");
         logger.info("Additional information received: {}", extraInfo);
+        logger.info("Drone battery level is now {}", drone.getBatteryLevel());
 
-        algorithm.acknowledgeResults(new ActionResult(response));
+        try {
+            algorithm.acknowledgeResults(new ActionResult(response));
+        } catch (Exception e) {
+            logger.error("Error in acknowledgeResults: {}", e);
+            throw e;
+        }
     }
 
     @Override
     public String deliverFinalReport() {
-        return algorithm.deliverFinalReport();
+        String finalReport = algorithm.deliverFinalReport();
+        logger.info("** Final report: {}", finalReport);
+        return finalReport;
+        // return "no creeks found";
     }
 
 }
