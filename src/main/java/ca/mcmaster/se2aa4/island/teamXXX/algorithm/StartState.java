@@ -7,14 +7,14 @@ import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionType;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 
 /**
  * Start state of the drone algorithm
- * This state will handle getting dimensions of map and getting to (1,1)
- * position
+ * This state will handle getting dimensions of map
  * 
  * For MVP, we will assume that the drone is not near ground (in all directions
- * if extended)
+ * if extended). Also assume that the drone starts at (1,1)
  */
 public class StartState extends State {
 
@@ -44,10 +44,15 @@ public class StartState extends State {
             // If you are moving to the next direction
             drone.setDirection(currentDirection);
 
+            if (dimensions.size() == 4) {
+                // If all directions have been checked, move to (1,1)
+                return new GridSearchState(drone);
+            }
+
             return this;
         }
 
-        return new GridSearchState(drone);
+        return this;
 
     }
 
@@ -58,7 +63,7 @@ public class StartState extends State {
         // Turn right if it is the first action
         if (start) {
             start = false;
-            
+
             currentDirection = currentDirection.right();
             action = drone.head(currentDirection);
         } else if (dimensions.containsKey(currentDirection)) {
@@ -66,7 +71,7 @@ public class StartState extends State {
             currentDirection = currentDirection.left();
             action = drone.head(currentDirection);
 
-        } else if (dimensions.size() < 4) {
+        } else {
             action = drone.echo(currentDirection);
         }
 
