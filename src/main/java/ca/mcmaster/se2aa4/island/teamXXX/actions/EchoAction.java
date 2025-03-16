@@ -24,7 +24,7 @@ public record EchoAction(Direction heading) implements Action {
 
         // { 'direction': 'N' }
         JSONObject parameters = new JSONObject();
-        parameters.put("direction", heading);
+        parameters.put("direction", heading.toString());
 
         // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
         command.put("parameters", parameters);

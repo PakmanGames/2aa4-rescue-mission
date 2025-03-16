@@ -30,10 +30,12 @@ public class Explorer implements IExplorerRaid {
         Integer batteryLevel = info.getInt("budget");
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
+        logger.info("Initializing the drone right nowwww----------------------------------");
 
-        drone = new Drone(Direction.valueOf(direction), batteryLevel, new ActionManager());
+        drone = new Drone(Direction.getFromAbbr(direction), batteryLevel, new ActionManager());
         algorithm = new GridSearchDroneAlgorithm(drone);
 
+        logger.info("** Initialization complete");
     }
 
     @Override

@@ -46,6 +46,7 @@ public enum Direction {
         for (Direction dir : Direction.values())
             if (dir.getAbbr().equals(abbr))
                 return dir;
+
         return null;
     }
 
