@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.drone;
 
-import org.json.JSONObject;
-
+import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
 
 public class Drone {
@@ -23,6 +22,10 @@ public class Drone {
         return direction;
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
     // Gets the current position of the drone
     public Position getPosition() {
         return position;
@@ -42,23 +45,23 @@ public class Drone {
         return mapInfo;
     }
 
-    public JSONObject fly() {
+    public Action fly() {
         return actionManager.createFlyCommand();
     }
 
-    public JSONObject scan() {
+    public Action scan() {
         return actionManager.createScanCommand();
     }
 
-    public JSONObject echo(Direction heading) {
+    public Action echo(Direction heading) {
         return actionManager.createEchoCommand(heading);
     }
 
-    public JSONObject head(Direction heading) {
+    public Action head(Direction heading) {
         return actionManager.createHeadingCommand(heading);
     }
 
-    public JSONObject stop() {
+    public Action stop() {
         return actionManager.createStopCommand();
     }
 

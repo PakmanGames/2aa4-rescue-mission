@@ -18,10 +18,10 @@ public class ActionManager {
      * 
      * @return the JSON string representing the fly forward command
      */
-    public JSONObject createFlyCommand() {
+    public Action createFlyCommand() {
         JSONObject command = new JSONObject();
         command.put("action", "fly");
-        return command;
+        return new Action(ActionType.FLY, command);
     }
 
     /**
@@ -35,7 +35,7 @@ public class ActionManager {
      * @param heading the direction to turn
      * @return the command for the drone to change its heading
      */
-    public JSONObject createHeadingCommand(Direction heading) {
+    public Action createHeadingCommand(Direction heading) {
         JSONObject command = new JSONObject();
         command.put("action", "heading");
 
@@ -45,7 +45,7 @@ public class ActionManager {
 
         // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
         command.put("parameters", parameters);
-        return command;
+        return new Action(ActionType.HEADING, command);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ActionManager {
      * @param heading the direction to turn
      * @return the command for land detection
      */
-    public JSONObject createEchoCommand(Direction heading) {
+    public Action createEchoCommand(Direction heading) {
         JSONObject command = new JSONObject();
         command.put("action", "echo");
 
@@ -68,7 +68,7 @@ public class ActionManager {
 
         // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
         command.put("parameters", parameters);
-        return command;
+        return new Action(ActionType.ECHO, command);
     }
 
     /**
@@ -77,10 +77,10 @@ public class ActionManager {
      * 
      * @return the JSON string representing the scan command
      */
-    public JSONObject createScanCommand() {
+    public Action createScanCommand() {
         JSONObject command = new JSONObject();
         command.put("action", "scan");
-        return command;
+        return new Action(ActionType.SCAN, command);
     }
 
     /**
@@ -89,10 +89,10 @@ public class ActionManager {
      * 
      * @return the JSON string representing the stop command
      */
-    public JSONObject createStopCommand() {
+    public Action createStopCommand() {
         JSONObject command = new JSONObject();
         command.put("action", "stop");
-        return command;
+        return new Action(ActionType.STOP, command);
     }
 
 }

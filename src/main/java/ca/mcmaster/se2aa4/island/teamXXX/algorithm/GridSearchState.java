@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
-import org.json.JSONObject;
-
+import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 
@@ -18,7 +17,7 @@ public class GridSearchState extends State {
     }
 
     @Override
-    public JSONObject getAction() {
+    public Action getAction() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAction'");
     }

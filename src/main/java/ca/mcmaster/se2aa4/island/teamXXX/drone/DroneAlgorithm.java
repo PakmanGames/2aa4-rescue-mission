@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.drone;
 
-import org.json.JSONObject;
-
+import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 
 public abstract class DroneAlgorithm {
@@ -15,7 +14,7 @@ public abstract class DroneAlgorithm {
         return drone;
     }
 
-    public abstract JSONObject takeDecision();
+    public abstract Action takeDecision();
 
     public abstract void acknowledgeResults(ActionResult s);
 

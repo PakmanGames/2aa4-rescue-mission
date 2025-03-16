@@ -29,11 +29,11 @@ public enum Direction {
         return abbr;
     }
 
-    public Direction getLeft() {
+    public Direction left() {
         return left;
     }
 
-    public Direction getRight() {
+    public Direction right() {
         return right;
     }
 
@@ -49,4 +49,4 @@ public enum Direction {
         return null;
     }
 
-    }
+}

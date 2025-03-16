@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
-import org.json.JSONObject;
-
+import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 
@@ -18,6 +17,6 @@ public abstract class State {
 
     public abstract State nextState(ActionResult action);
 
-    public abstract JSONObject getAction();
+    public abstract Action getAction();
 
 }

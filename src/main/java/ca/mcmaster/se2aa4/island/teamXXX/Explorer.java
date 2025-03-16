@@ -38,7 +38,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String takeDecision() {
-        JSONObject decision = algorithm.takeDecision();
+        JSONObject decision = algorithm.takeDecision().json();
         logger.info("** Decision: {}", decision.toString());
         return decision.toString();
     }

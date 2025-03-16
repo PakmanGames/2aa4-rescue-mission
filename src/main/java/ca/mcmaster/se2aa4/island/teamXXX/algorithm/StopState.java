@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
-import org.json.JSONObject;
-
+import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 
@@ -17,7 +16,7 @@ public class StopState extends State {
     }
 
     @Override
-    public JSONObject getAction() {
+    public Action getAction() {
         return getDrone().stop();
     }
 
