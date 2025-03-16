@@ -1,5 +1,8 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionType;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
@@ -26,15 +29,17 @@ public class GridSearchState extends State {
     /// 1. If facing south, turn left, then left
     /// 2. If facing north, turn right, then right
     private Action action;
-    private Direction currentDirection;
     private boolean changingDirection;
+
+    private final Logger logger = LogManager.getLogger();
 
     public GridSearchState(Drone drone) {
         super(drone);
-        currentDirection = drone.getDirection();
         // Dummy fly action
         action = drone.fly();
         changingDirection = false;
+
+        logger.info("Map Dimensions ({},{})", drone.getMapInfo().getWidth(), drone.getMapInfo().getHeight());
     }
 
     @Override
@@ -46,17 +51,22 @@ public class GridSearchState extends State {
 
         Position position = drone.getPosition();
         MapInfo mapInfo = drone.getMapInfo();
+        logger.info("Position: {}, Direction: {}", position, drone.getDirection());
+
+        if (drone.getBatteryLevel() < 35) {
+            return new StopState(drone);
+        }
 
         if (action.type() == ActionType.FLY) {
 
             // Direction DOWN or Direction UP
             if (drone.getDirection() == Direction.SOUTH) {
                 // If the drone is not facing the end of the map (vertically) do the following
-                if (position.getY() + 6 >= mapInfo.getHeight() && position.getX() + 6 < mapInfo.getWidth()) {
+                if (position.getY() + 6 >= mapInfo.getHeight() && position.getX() + 6 > mapInfo.getWidth()) {
                     return new StopState(drone);
                 }
             } else if (drone.getDirection() == Direction.NORTH) {
-                if (position.getY() - 6 < 1 && position.getX() + 6 < mapInfo.getWidth()) {
+                if (position.getY() - 6 < 1 && position.getX() + 6 > mapInfo.getWidth()) {
                     return new StopState(drone);
                 }
 
@@ -72,23 +82,30 @@ public class GridSearchState extends State {
         Drone drone = getDrone();
         Position position = drone.getPosition();
         MapInfo mapInfo = drone.getMapInfo();
+        Direction currentDirection = drone.getDirection();
 
         if (action.type() == ActionType.FLY) {
             action = drone.scan();
         } else if (action.type() == ActionType.HEADING) {
             if (changingDirection) {
                 changingDirection = false;
-                action = drone.scan();
+                action = drone.fly();
             } else {
                 changingDirection = true;
-                action = drone.head(currentDirection);
+                if (position.getY() + 6 >= mapInfo.getHeight()) {
+                    // If the drone is not facing the end of the map (vertically) do the following
+                    action = drone.head(currentDirection.left());
+                } else {
+                    // If the drone is not facing the end of the map (vertically) do the following
+                    action = drone.head(currentDirection.right());
+                }
             }
 
         } else if (action.type() == ActionType.SCAN) {
-            if (drone.getDirection() == Direction.SOUTH && position.getY() + 6 >= mapInfo.getHeight()) {
+            if (currentDirection == Direction.SOUTH && position.getY() + 6 >= mapInfo.getHeight()) {
                 // If the drone is not facing the end of the map (vertically) do the following
                 action = drone.head(currentDirection.left());
-            } else if (drone.getDirection() == Direction.NORTH && position.getY() - 6 < 1) {
+            } else if (currentDirection == Direction.NORTH && position.getY() - 6 < 1) {
                 // If the drone is not facing the end of the map (vertically) do the following
                 action = drone.head(currentDirection.right());
             } else {
