@@ -23,9 +23,4 @@ public class GridSearchDroneAlgorithm extends DroneAlgorithm {
         state = state.nextState(s);
     }
 
-    @Override
-    public String deliverFinalReport() {
-        return "no creek found";
-    }
-
 }
