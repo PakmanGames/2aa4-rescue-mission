@@ -1,6 +1,14 @@
 package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POIType;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 
 /**
  * Represents the result of an action.
@@ -29,7 +37,21 @@ public class ActionResult {
      * @param json creates it from the JSON parameters
      */
     public ActionResult(JSONObject json) {
+        this.cost = json.getInt("cost");
+        this.status = json.getString("status").equals("OK");
+        JSONObject extras = json.getJSONObject("extras");
 
+        if (extras.has("range")) {
+            echoResult = new EchoActionResult(extras.getInt("range"), extras.getString("found").equals("GROUND"));
+        } else if (extras.has("biomes")) {
+            List<String> creeks = new ArrayList<>();
+            List<String> sites = new ArrayList<>();
+
+            extras.getJSONArray("creeks").toList().stream().map(Object::toString).forEach(creeks::add);
+            extras.getJSONArray("sites").toList().stream().map(Object::toString).forEach(sites::add);
+
+            scanResult = new ScanActionResult(creeks, sites);
+        }
     }
 
     /**

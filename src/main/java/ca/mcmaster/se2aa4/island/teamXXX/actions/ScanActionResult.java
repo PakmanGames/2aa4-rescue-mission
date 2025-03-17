@@ -2,8 +2,6 @@ package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
 import java.util.List;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
-
 /**
  * Represents the result of a scan action.
  */
@@ -11,11 +9,11 @@ public record ScanActionResult(
         /**
          * The list of creeks detected in the scan action.
          */
-        List<POI> creeks,
+        List<String> creeks,
         /**
          * The list of emergency sites detected in the scan action.
          */
-        List<POI> sites) {
+        List<String> sites) {
 
     /**
      * Constructs a new instance of the scan action result.
