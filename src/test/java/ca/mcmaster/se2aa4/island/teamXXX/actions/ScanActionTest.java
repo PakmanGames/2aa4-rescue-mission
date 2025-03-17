@@ -5,12 +5,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ScanAction;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResultFactory;
+import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResult;
+import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResultFactory;
 
 public class ScanActionTest {
-    private ActionResultFactory factory = new ActionResultFactory();
+    private Drone drone;
+    private ScanActionResultFactory factory;
+
+    @BeforeEach
+    public void initialize() {
+        drone = new Drone(Direction.NORTH, 100, new ActionManager());
+        drone.setPosition(new Position(0, 0));
+        factory = new ScanActionResultFactory();
+    }
 
     @Test
     public void testScanAction() {
@@ -22,6 +33,20 @@ public class ScanActionTest {
 
     @Test
     public void testScanActionConsume() {
-        //todo
+        ScanAction action = new ScanAction();
+        JSONObject json = new JSONObject();
+        json.put("cost", 10);
+        json.put("status", "OK");
+        JSONObject extras = new JSONObject();
+        extras.put("creeks", factory.createCreeks());
+        extras.put("sites", factory.createSites());
+        json.put("extras", extras);
+        ActionResult result = new ActionResult(json);
+
+        action.consume(drone, result);
+        assertTrue(drone.getMapInfo().hasCreeks());
+        assertTrue(drone.getMapInfo().hasSite());
+
+        assertEquals(factory.createCreeks(), drone.getMapInfo().getCreeks());
     }
 }
