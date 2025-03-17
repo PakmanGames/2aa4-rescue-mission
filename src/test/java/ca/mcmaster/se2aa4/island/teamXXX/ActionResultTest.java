@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX;
 
-import org.json.JSONObject;
-import org.json.JSONArray;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
@@ -9,42 +8,55 @@ import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ActionResultTest {
+    private ActionResultFactory factory = new ActionResultFactory();
+    private ActionResult actionResultWithEcho;
+    private ActionResult actionResultWithScan;
+
+    @BeforeEach
+    public void initialize() {
+        this.actionResultWithEcho = factory.createActionResultWithEcho(10, "OK", 5, "GROUND");
+        this.actionResultWithScan = factory.createActionResultWithScan(10, "OK");
+    }
+
+    public ActionResult getActionResultWithEcho() {
+        return actionResultWithEcho;
+    }
+
+    public ActionResult getActionResultWithScan() {
+        return actionResultWithScan;
+    }
+
     @Test
     public void testActionResultWithEcho() {
-        JSONObject json = new JSONObject();
-        json.put("cost", 10);
-        json.put("status", "OK");
-        JSONObject extras = new JSONObject();
-        extras.put("range", 5);
-        extras.put("found", "GROUND");
-        json.put("extras", extras);
-
-        ActionResult result = new ActionResult(json);
+        ActionResult result = this.getActionResultWithEcho();
         assertEquals(10, result.getCost());
         assertTrue(result.isOk());
         assertNotNull(result.getEchoResult());
-        assertNull(result.getScanResult());
         assertEquals(5, result.getEchoResult().range());
         assertTrue(result.getEchoResult().foundGround());
     }
 
     @Test
     public void testActionResultWithScan() {
-        JSONObject json = new JSONObject();
-        json.put("cost", 10);
-        json.put("status", "OK");
-        JSONObject extras = new JSONObject();
-        extras.put("biomes", new JSONArray());
-        extras.put("creeks", new JSONArray());
-        extras.put("sites", new JSONArray());
-        json.put("extras", extras);
-
-        ActionResult result = new ActionResult(json);
+        ActionResult result = this.getActionResultWithScan();
         assertEquals(10, result.getCost());
         assertTrue(result.isOk());
         assertNotNull(result.getScanResult());
-        assertNull(result.getEchoResult());
         assertTrue(result.getScanResult().creeks().isEmpty());
         assertTrue(result.getScanResult().sites().isEmpty());
+    }
+
+    @Test
+    public void testActionResultWithEchoAndScanIsNull() {
+        ActionResult result = this.getActionResultWithEcho();
+        assertNotNull(result.getEchoResult());
+        assertNull(result.getScanResult());
+    }
+
+    @Test
+    public void testActionResultWithScanAndEchoIsNull() {
+        ActionResult result = this.getActionResultWithScan();
+        assertNotNull(result.getScanResult());
+        assertNull(result.getEchoResult());
     }
 }
