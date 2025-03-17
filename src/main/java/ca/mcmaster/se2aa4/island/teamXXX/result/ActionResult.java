@@ -1,14 +1,8 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.teamXXX.result;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POIType;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 
 /**
  * Represents the result of an action.

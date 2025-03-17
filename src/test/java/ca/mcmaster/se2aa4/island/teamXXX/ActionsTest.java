@@ -37,8 +37,4 @@ public class ActionsTest {
 
     }
 
-    @Test
-    public void testStopAction() {
-
-    }
 }

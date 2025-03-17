@@ -1,7 +1,5 @@
 package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
-import org.json.JSONObject;
-
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 
 /**
@@ -18,10 +16,8 @@ public class ActionManager {
      * 
      * @return the JSON string representing the fly forward command
      */
-    public String createFlyCommand() {
-        JSONObject command = new JSONObject();
-        command.put("action", "fly");
-        return command.toString();
+    public Action createFlyCommand() {
+        return new FlyAction();
     }
 
     /**
@@ -35,17 +31,8 @@ public class ActionManager {
      * @param heading the direction to turn
      * @return the command for the drone to change its heading
      */
-    public String createHeadingCommand(Direction heading) {
-        JSONObject command = new JSONObject();
-        command.put("action", "heading");
-
-        // { 'direction': 'N' }
-        JSONObject parameters = new JSONObject();
-        parameters.put("direction", heading);
-
-        // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
-        command.put("parameters", parameters);
-        return command.toString();
+    public Action createHeadingCommand(Direction heading) {
+        return new HeadingAction(heading);
     }
 
     /**
@@ -58,17 +45,8 @@ public class ActionManager {
      * @param heading the direction to turn
      * @return the command for land detection
      */
-    public String createEchoCommand(Direction heading) {
-        JSONObject command = new JSONObject();
-        command.put("action", "echo");
-
-        // { 'direction': 'N' }
-        JSONObject parameters = new JSONObject();
-        parameters.put("direction", heading);
-
-        // { 'action': 'heading', 'parameters': { 'direction': 'N' } }
-        command.put("parameters", parameters);
-        return command.toString();
+    public Action createEchoCommand(Direction heading) {
+        return new EchoAction(heading);
     }
 
     /**
@@ -77,10 +55,8 @@ public class ActionManager {
      * 
      * @return the JSON string representing the scan command
      */
-    public String createScanCommand() {
-        JSONObject command = new JSONObject();
-        command.put("action", "scan");
-        return command.toString();
+    public Action createScanCommand() {
+        return new ScanAction();
     }
 
     /**
@@ -89,10 +65,8 @@ public class ActionManager {
      * 
      * @return the JSON string representing the stop command
      */
-    public String createStopCommand() {
-        JSONObject command = new JSONObject();
-        command.put("action", "stop");
-        return command.toString();
+    public Action createStopCommand() {
+        return new StopAction();
     }
 
 }

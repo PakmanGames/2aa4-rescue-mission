@@ -3,12 +3,12 @@ package ca.mcmaster.se2aa4.island.teamXXX;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class DirectionTest {
+public class DimensionsTest {
     private ExplorerFactory explorerFactory;
     // This for the test cases
     private Explorer explorer;
 
-    public DirectionTest() {
+    public DimensionsTest() {
         explorerFactory = new ExplorerFactory();
     }
 
@@ -34,6 +34,7 @@ public class DirectionTest {
 
         // Either that or use the ECHO command to get the information
     }
+
 
     @Test
     public void moveToCorner() {

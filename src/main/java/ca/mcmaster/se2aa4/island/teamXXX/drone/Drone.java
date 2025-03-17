@@ -1,5 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.drone;
 
+import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
 
 public class Drone {
@@ -7,31 +8,64 @@ public class Drone {
     private Position position;
     private int batteryLevel;
     private ActionManager actionManager;
+    private MapInfo mapInfo;
 
-    public Drone(Direction initialDirection, Position initialPosition, int batteryLevel, ActionManager actionManager) {
+    public Drone(Direction initialDirection, int batteryLevel, ActionManager actionManager) {
         this.direction = initialDirection;
-        this.position = initialPosition;
         this.batteryLevel = batteryLevel;
         this.actionManager = actionManager;
+        this.mapInfo = new MapInfo();
     }
 
-    public String fly() {
+    // Gets the direction of the drone
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    // Gets the current position of the drone
+    public Position getPosition() {
+        return position;
+    }
+
+    // Sets the initial position of the drone
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    // Gets the battery level of the drone
+    public int getBatteryLevel() {
+        return batteryLevel;
+    }
+
+    public MapInfo getMapInfo() {
+        return mapInfo;
+    }
+
+    public Action fly() {
         return actionManager.createFlyCommand();
     }
 
-    public String scan() {
+    public Action scan() {
         return actionManager.createScanCommand();
     }
 
-    public String echo(Direction heading) {
+    public Action echo(Direction heading) {
         return actionManager.createEchoCommand(heading);
     }
 
-    public String head(Direction heading) {
+    public Action head(Direction heading) {
         return actionManager.createHeadingCommand(heading);
     }
 
-    public String stop() {
+    public Action stop() {
         return actionManager.createStopCommand();
+    }
+
+    public void expend(int cost) {
+        batteryLevel -= cost;
     }
 }

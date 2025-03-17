@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.teamXXX.result;
 
 /**
  * Represents information about the ground from range when using the echo

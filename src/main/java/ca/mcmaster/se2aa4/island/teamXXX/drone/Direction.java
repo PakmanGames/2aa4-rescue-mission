@@ -29,11 +29,11 @@ public enum Direction {
         return abbr;
     }
 
-    public Direction getLeft() {
+    public Direction left() {
         return left;
     }
 
-    public Direction getRight() {
+    public Direction right() {
         return right;
     }
 
@@ -46,7 +46,8 @@ public enum Direction {
         for (Direction dir : Direction.values())
             if (dir.getAbbr().equals(abbr))
                 return dir;
+
         return null;
     }
 
-    }
+}
