@@ -74,7 +74,7 @@ public class MapInfo {
     }
 
     public boolean hasSite() {
-        return site == null;
+        return site != null;
     }
 
     public POI getNearestCreek() {
