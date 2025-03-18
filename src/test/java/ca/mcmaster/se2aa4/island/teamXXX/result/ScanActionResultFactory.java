@@ -1,16 +1,14 @@
 package ca.mcmaster.se2aa4.island.teamXXX.result;
 
-import java.util.List;
 import java.util.Arrays;
-
-import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResult;
+import java.util.List;
 
 public class ScanActionResultFactory {
-    public List createCreeks() {
+    public List<String> createCreeks() {
         return Arrays.asList("creek_id1", "creek_id2");
     }
 
-    public List createSites() {
+    public List<String> createSites() {
         return Arrays.asList("site_id1", "site_id2");
     }
 
