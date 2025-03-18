@@ -1,10 +1,11 @@
-package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
+package ca.mcmaster.se2aa4.island.teamXXX.algorithm.mvp;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionType;
+import ca.mcmaster.se2aa4.island.teamXXX.algorithm.State;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.MapInfo;
