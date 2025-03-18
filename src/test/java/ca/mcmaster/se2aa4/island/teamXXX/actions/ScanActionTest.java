@@ -1,5 +1,6 @@
 package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class ScanActionTest {
         JSONObject extras = new JSONObject();
         extras.put("creeks", factory.createCreeks());
         extras.put("sites", factory.createSites());
+        extras.put("biomes",List.of());
         json.put("extras", extras);
         ActionResult result = new ActionResult(json);
 
