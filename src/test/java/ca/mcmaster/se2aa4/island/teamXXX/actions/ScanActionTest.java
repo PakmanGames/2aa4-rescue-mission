@@ -1,15 +1,18 @@
 package ca.mcmaster.se2aa4.island.teamXXX.actions;
 
+import java.util.stream.Collectors;
+
 import org.json.JSONObject;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResult;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResultFactory;
 
 public class ScanActionTest {
@@ -47,6 +50,6 @@ public class ScanActionTest {
         assertTrue(drone.getMapInfo().hasCreeks());
         assertTrue(drone.getMapInfo().hasSite());
 
-        assertEquals(factory.createCreeks(), drone.getMapInfo().getCreeks());
+        assertEquals(factory.createCreeks(), drone.getMapInfo().getCreeks().stream().map(POI::id).collect(Collectors.toList()));
     }
 }
