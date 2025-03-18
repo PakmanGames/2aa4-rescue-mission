@@ -1,21 +1,26 @@
 package ca.mcmaster.se2aa4.island.teamXXX.result;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ActionResultTest {
     private ActionResultFactory factory = new ActionResultFactory();
     private ActionResult actionResultWithEcho;
     private ActionResult actionResultWithScan;
+    private ActionResult actionResultWithEchoOOR;
+    private ActionResult actionResultOOR;
 
     @BeforeEach
     public void initialize() {
         this.actionResultWithEcho = factory.createActionResultWithEcho(10, "OK", 5, "GROUND");
+        this.actionResultWithEchoOOR = factory.createActionResultWithEcho(10, "OK", 0, "OUT_OF_RANGE");
         this.actionResultWithScan = factory.createActionResultWithScan(10, "OK");
+        this.actionResultOOR = factory.createAROOR(10, "OK");
     }
 
     public ActionResult getActionResultWithEcho() {
@@ -24,6 +29,14 @@ public class ActionResultTest {
 
     public ActionResult getActionResultWithScan() {
         return actionResultWithScan;
+    }
+
+    public ActionResult getActionResultOOR(){
+        return actionResultOOR;
+    }
+
+    public ActionResult getActionResultwithEchoOOR(){
+        return actionResultWithEchoOOR;
     }
 
     @Test
@@ -59,4 +72,16 @@ public class ActionResultTest {
         assertNotNull(result.getScanResult());
         assertNull(result.getEchoResult());
     }
+
+    @Test
+public void testActionResultWithOutOfRangeEcho() {
+    ActionResult result = factory.createAROOR(10, "OK");
+
+    assertEquals(10, result.getCost());
+    assertTrue(result.isOk());
+    assertNotNull(result.getEchoResult());
+    assertEquals(0, result.getEchoResult().range()); 
+    assertFalse(result.getEchoResult().foundGround()); 
+}
+
 }
