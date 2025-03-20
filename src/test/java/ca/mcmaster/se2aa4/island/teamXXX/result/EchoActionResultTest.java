@@ -3,8 +3,6 @@ package ca.mcmaster.se2aa4.island.teamXXX.result;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import ca.mcmaster.se2aa4.island.teamXXX.result.EchoActionResult;
-
 public class EchoActionResultTest {
     @Test
     public void testEchoActionResult() {

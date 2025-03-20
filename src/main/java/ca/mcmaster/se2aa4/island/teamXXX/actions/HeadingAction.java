@@ -10,6 +10,7 @@ public record HeadingAction(Direction heading) implements Action {
 
     @Override
     public void consume(Drone drone, ActionResult result) {
+        drone.expend(result.getCost());
         Direction direction = drone.getDirection();
 
         switch (direction) {

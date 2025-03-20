@@ -19,6 +19,7 @@ public class FlyAction implements Action {
     }
 
     public void consume(Drone drone, ActionResult result) {
+        drone.expend(result.getCost());
         Direction direction = drone.getDirection();
 
         switch (direction) {

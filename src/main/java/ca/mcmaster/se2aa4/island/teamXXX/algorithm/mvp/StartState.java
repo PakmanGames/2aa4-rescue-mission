@@ -34,7 +34,6 @@ public class StartState extends State {
     @Override
     public State nextState(ActionResult result) {
         Drone drone = getDrone();
-        drone.expend(result.getCost());
         action.consume(drone, result);
 
         Direction currentDirection = drone.getDirection();
