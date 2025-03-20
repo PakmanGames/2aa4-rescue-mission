@@ -17,8 +17,8 @@ public class CenterState extends State {
     }
 
     public boolean isCenter(Position position){
-        int centerX = mapWidth / 2;
-        int centerY = mapHeight / 2;
+        int centerX = (int) Math.ceil(mapWidth / 2);
+        int centerY = (int) Math.ceil(mapHeight / 2);
         boolean is_center = (position.getX()== centerX && position.getY() == centerY);
         return is_center;
 
