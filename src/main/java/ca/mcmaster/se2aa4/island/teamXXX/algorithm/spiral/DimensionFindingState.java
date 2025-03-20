@@ -7,8 +7,11 @@ import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public class DimensionFindingState extends State {
 
-    public DimensionFindingState(Drone drone) {
+
+
+    public DimensionFindingState(Drone drone, int mapWidth, int mapHeight) {
         super(drone);
+
     }
 
     @Override
