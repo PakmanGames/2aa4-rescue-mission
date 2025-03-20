@@ -14,7 +14,7 @@ public class StartState extends State {
     @Override
     public State nextState(ActionResult result) {
         getDrone().scan().consume(getDrone(), result);
-        return new SpiralState(getDrone());
+        return new DimensionFindingState(getDrone());
     }
 
     @Override
