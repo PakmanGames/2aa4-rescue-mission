@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import java.util.Arrays;
-
-import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResult;
 
 public class ScanActionResultTest {
     private ScanActionResultFactory factory = new ScanActionResultFactory();

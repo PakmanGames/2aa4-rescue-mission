@@ -47,7 +47,6 @@ public class GridSearchState extends State {
     public State nextState(ActionResult result) {
 
         Drone drone = getDrone();
-        drone.expend(result.getCost());
         action.consume(drone, result);
 
         Position position = drone.getPosition();

@@ -9,6 +9,7 @@ public class StopAction implements Action {
 
     @Override
     public void consume(Drone drone, ActionResult result) {
+        drone.expend(result.getCost());
     }
 
     @Override

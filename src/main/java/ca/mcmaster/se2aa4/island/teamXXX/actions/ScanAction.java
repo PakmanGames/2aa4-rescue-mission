@@ -14,6 +14,7 @@ public class ScanAction implements Action {
 
     @Override
     public void consume(Drone drone, ActionResult result) {
+        drone.expend(result.getCost());
         MapInfo mapInfo = drone.getMapInfo();
         Position position = drone.getPosition();
 

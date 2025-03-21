@@ -10,10 +10,10 @@ import org.json.JSONTokener;
 
 import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
 import ca.mcmaster.se2aa4.island.teamXXX.algorithm.DroneAlgorithm;
-import ca.mcmaster.se2aa4.island.teamXXX.algorithm.mvp.GridSearchDroneAlgorithm;
 import ca.mcmaster.se2aa4.island.teamXXX.algorithm.spiral.SpiralSearchDroneAlgorithm;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public class Explorer implements IExplorerRaid {
@@ -33,6 +33,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("Battery level is {}", batteryLevel);
 
         drone = new Drone(Direction.getFromAbbr(direction), batteryLevel, new ActionManager());
+        drone.setPosition(new Position(80, 80));
         algorithm = new SpiralSearchDroneAlgorithm(drone);
 
         logger.info("** Initialization complete");
