@@ -1,12 +1,12 @@
-package ca.mcmaster.se2aa4.island.teamXXX.algorithm;
+package ca.mcmaster.se2aa4.island.team037.algorithm;
 
 import org.json.JSONObject;
 
-import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.MapInfo;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
+import ca.mcmaster.se2aa4.island.team037.actions.Action;
+import ca.mcmaster.se2aa4.island.team037.drone.Drone;
+import ca.mcmaster.se2aa4.island.team037.drone.MapInfo;
+import ca.mcmaster.se2aa4.island.team037.drone.POI;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
 public abstract class DroneAlgorithm {
     private Drone drone;

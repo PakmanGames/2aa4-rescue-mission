@@ -1,14 +1,14 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team037.actions;
 
 import org.json.JSONObject;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.MapInfo;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POIType;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResult;
+import ca.mcmaster.se2aa4.island.team037.drone.Drone;
+import ca.mcmaster.se2aa4.island.team037.drone.MapInfo;
+import ca.mcmaster.se2aa4.island.team037.drone.POI;
+import ca.mcmaster.se2aa4.island.team037.drone.POIType;
+import ca.mcmaster.se2aa4.island.team037.drone.Position;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
+import ca.mcmaster.se2aa4.island.team037.result.ScanActionResult;
 
 public class ScanAction implements Action {
 

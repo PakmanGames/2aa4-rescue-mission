@@ -1,6 +1,6 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team037.actions;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
+import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 
 /**
  * The ActionManager class is responsible for creating JSON strings that

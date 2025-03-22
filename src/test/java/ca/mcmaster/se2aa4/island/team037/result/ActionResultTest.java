@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.result;
+package ca.mcmaster.se2aa4.island.team037.result;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

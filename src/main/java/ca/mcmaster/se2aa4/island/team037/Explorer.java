@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX;
+package ca.mcmaster.se2aa4.island.team037;
 
 import java.io.StringReader;
 import org.apache.logging.log4j.LogManager;
@@ -8,13 +8,13 @@ import eu.ace_design.island.bot.IExplorerRaid;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
-import ca.mcmaster.se2aa4.island.teamXXX.algorithm.DroneAlgorithm;
-import ca.mcmaster.se2aa4.island.teamXXX.algorithm.spiral.SpiralSearchDroneAlgorithm;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
+import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
+import ca.mcmaster.se2aa4.island.team037.algorithm.DroneAlgorithm;
+import ca.mcmaster.se2aa4.island.team037.algorithm.spiral.SpiralSearchDroneAlgorithm;
+import ca.mcmaster.se2aa4.island.team037.drone.Direction;
+import ca.mcmaster.se2aa4.island.team037.drone.Drone;
+import ca.mcmaster.se2aa4.island.team037.drone.Position;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
 public class Explorer implements IExplorerRaid {
 

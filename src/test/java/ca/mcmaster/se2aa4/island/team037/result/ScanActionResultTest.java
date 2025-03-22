@@ -1,6 +1,7 @@
-package ca.mcmaster.se2aa4.island.teamXXX.result;
+package ca.mcmaster.se2aa4.island.team037.result;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;

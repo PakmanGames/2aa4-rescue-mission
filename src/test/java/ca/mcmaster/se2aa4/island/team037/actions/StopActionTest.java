@@ -1,11 +1,11 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team037.actions;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.DroneFactory;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
+import ca.mcmaster.se2aa4.island.team037.drone.DroneFactory;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
 public class StopActionTest {
     private DroneFactory factory = new DroneFactory();

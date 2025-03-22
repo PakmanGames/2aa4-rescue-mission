@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team037.actions;
 
 public enum ActionType {
     FLY,

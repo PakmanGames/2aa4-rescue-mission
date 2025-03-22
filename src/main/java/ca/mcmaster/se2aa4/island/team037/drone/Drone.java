@@ -1,7 +1,7 @@
-package ca.mcmaster.se2aa4.island.teamXXX.drone;
+package ca.mcmaster.se2aa4.island.team037.drone;
 
-import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
-import ca.mcmaster.se2aa4.island.teamXXX.actions.ActionManager;
+import ca.mcmaster.se2aa4.island.team037.actions.Action;
+import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
 
 public class Drone {
     private Direction direction;
