@@ -20,7 +20,7 @@ public class DimensionFindingState extends State {
 
 
 
-    public DimensionFindingState(Drone drone, int mapWidth, int mapHeight) {
+    public DimensionFindingState(Drone drone) {
         super(drone);
         this.nextEchoDirection = drone.getDirection().right();
         this.currentEchoDirection = null;
