@@ -10,6 +10,9 @@ public class SpiralSearchDroneAlgorithm extends DroneAlgorithm {
         super(drone);
     }
 
+
+
+
     @Override
     protected State getStartState(Drone drone) {
         return new StartState(drone);
