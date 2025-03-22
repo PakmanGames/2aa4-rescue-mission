@@ -9,12 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
-import ca.mcmaster.se2aa4.island.team037.actions.ActionType;
-import ca.mcmaster.se2aa4.island.team037.actions.ScanAction;
-import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
-import ca.mcmaster.se2aa4.island.team037.actions.ActionType;
-import ca.mcmaster.se2aa4.island.team037.actions.ScanAction;
 import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 import ca.mcmaster.se2aa4.island.team037.drone.Drone;
 import ca.mcmaster.se2aa4.island.team037.drone.POI;

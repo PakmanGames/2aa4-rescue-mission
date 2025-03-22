@@ -3,10 +3,6 @@ package ca.mcmaster.se2aa4.island.team037.result;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
-
-import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
-
 public class ActionResultFactory {
     public ActionResult createActionResultWithEcho(int cost, String status, int range, String found) {
         JSONObject json = new JSONObject();

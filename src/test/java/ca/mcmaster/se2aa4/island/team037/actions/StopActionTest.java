@@ -4,8 +4,6 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import ca.mcmaster.se2aa4.island.team037.actions.ActionType;
-import ca.mcmaster.se2aa4.island.team037.actions.StopAction;
 import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 import ca.mcmaster.se2aa4.island.team037.drone.DroneFactory;
 

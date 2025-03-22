@@ -3,8 +3,6 @@ package ca.mcmaster.se2aa4.island.team037;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ca.mcmaster.se2aa4.island.team037.Explorer;
-
 public class ActionsTest {
     private ExplorerFactory explorerFactory;
     // This for the test cases

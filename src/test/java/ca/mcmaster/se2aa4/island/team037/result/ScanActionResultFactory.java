@@ -3,10 +3,6 @@ package ca.mcmaster.se2aa4.island.team037.result;
 import java.util.Arrays;
 import java.util.List;
 
-import ca.mcmaster.se2aa4.island.team037.result.ScanActionResult;
-
-import ca.mcmaster.se2aa4.island.team037.result.ScanActionResult;
-
 public class ScanActionResultFactory {
     public List<String> createCreeks() {
         return Arrays.asList("creek_id1", "creek_id2");

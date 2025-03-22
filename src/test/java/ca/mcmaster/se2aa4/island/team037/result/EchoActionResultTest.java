@@ -2,11 +2,6 @@ package ca.mcmaster.se2aa4.island.team037.result;
 
 import org.junit.jupiter.api.Test;
 
-import ca.mcmaster.se2aa4.island.team037.result.EchoActionResult;
-
-
-import ca.mcmaster.se2aa4.island.team037.result.EchoActionResult;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EchoActionResultTest {

@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
-
 public class ActionResultTest {
     private ActionResultFactory factory = new ActionResultFactory();
     private ActionResult actionResultWithEcho;
