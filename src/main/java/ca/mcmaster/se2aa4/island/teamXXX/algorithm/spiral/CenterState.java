@@ -1,5 +1,8 @@
 package ca.mcmaster.se2aa4.island.teamXXX.algorithm.spiral;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
 import ca.mcmaster.se2aa4.island.teamXXX.algorithm.State;
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
@@ -7,6 +10,7 @@ import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public class CenterState extends State {
+    private final Logger logger = LogManager.getLogger();
     private int centerX;
     private int centerY;
     private Action action;
