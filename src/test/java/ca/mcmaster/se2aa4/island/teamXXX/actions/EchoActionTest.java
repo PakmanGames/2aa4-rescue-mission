@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
+import ca.mcmaster.se2aa4.island.teamXXX.drone.DroneFactory;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public class EchoActionTest {
+    private DroneFactory factory = new DroneFactory();
+
     @Test
     public void testEchoAction() {
         EchoAction action = new EchoAction(Direction.NORTH);
@@ -28,6 +31,6 @@ public class EchoActionTest {
         extras.put("found", "GROUND");
         json.put("extras", extras);
         ActionResult result = new ActionResult(json);
-        action.consume(null, result);
+        action.consume(factory.getDrone(), result);
     }
 }

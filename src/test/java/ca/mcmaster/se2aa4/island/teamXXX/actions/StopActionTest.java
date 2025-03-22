@@ -4,9 +4,12 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import ca.mcmaster.se2aa4.island.teamXXX.drone.DroneFactory;
 import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
 
 public class StopActionTest {
+    private DroneFactory factory = new DroneFactory();
+
     @Test
     public void testStopAction() {
         StopAction action = new StopAction();
@@ -23,6 +26,6 @@ public class StopActionTest {
         json.put("extras", new JSONObject());
         json.put("status", "OK");
         ActionResult result = new ActionResult(json);
-        action.consume(null, result);
+        action.consume(factory.getDrone(), result);
     }
 }
