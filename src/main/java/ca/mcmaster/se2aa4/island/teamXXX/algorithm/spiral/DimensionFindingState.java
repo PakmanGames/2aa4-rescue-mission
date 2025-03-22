@@ -12,10 +12,11 @@ public class DimensionFindingState extends State {
     private Direction nextEchoDirection;
     private Integer oppositeEchoDistance;
     private Action action;
-    private Integer numOfRightTurns;
-    private Integer forwardFlyCount;
     private int length;
     private int width;
+    // counters to track the states of the state ? 🤯
+    private Integer numOfRightTurns;
+    private Integer forwardFlyCount;
 
     public DimensionFindingState(Drone drone) {
         super(drone);
@@ -43,6 +44,7 @@ public class DimensionFindingState extends State {
         action.consume(drone, result);
         if (result.isOk() && result.getEchoResult() instanceof EchoActionResult) {
             EchoActionResult echoResult = result.getEchoResult();
+            // Check if drone has echoed SOUTH and NORTH when facing EAST
             if (currentEchoDirection == Direction.SOUTH) {
                 length = echoResult.range();
             } else if (currentEchoDirection == Direction.NORTH) {
@@ -51,6 +53,7 @@ public class DimensionFindingState extends State {
                     length = length + oppositeEchoDistance + 1;
                     oppositeEchoDistance = 0;
                 }
+            // Check if drone has echoed EAST and WEST when facing SOUTH
             } else if (currentEchoDirection == Direction.EAST) {
                 width = echoResult.range();
             } else if (currentEchoDirection == Direction.WEST) {
@@ -70,7 +73,7 @@ public class DimensionFindingState extends State {
     }
 
     @Override
-    public Action getAction() {
+    public Action getAction() { // lowkey a mess could refactor to reduce bloat 🤮
         Drone drone = getDrone();
         if (numOfRightTurns == 0) {
             if (nextEchoDirection == drone.getDirection().right()) {
@@ -88,10 +91,10 @@ public class DimensionFindingState extends State {
             } else if (nextEchoDirection == drone.getDirection()) {
                 currentEchoDirection = nextEchoDirection;
                 if (drone.getDirection() == Direction.EAST) {
-                    action = drone.head(Direction.SOUTH);
+                    action = drone.head(Direction.SOUTH); // (2, 2)
                     numOfRightTurns++;
                     Action nextAction = action;
-                    nextEchoDirection = drone.getDirection().left();
+                    nextEchoDirection = drone.getDirection(); // next echo should be facing EAST
                     return nextAction;
                 }
             }
@@ -100,7 +103,7 @@ public class DimensionFindingState extends State {
                 currentEchoDirection = nextEchoDirection;
                 Action nextAction = action;
                 action = drone.echo(nextEchoDirection);
-                nextEchoDirection = drone.getDirection().right();
+                nextEchoDirection = drone.getDirection().right(); // next echo should be facing WEST
                 return nextAction;
             } else if (nextEchoDirection == drone.getDirection().right()) {
                 currentEchoDirection = nextEchoDirection;
@@ -108,37 +111,38 @@ public class DimensionFindingState extends State {
                 action = drone.echo(nextEchoDirection);
                 nextEchoDirection = null;
                 return nextAction;
+            // Drone now starts to moves to (2, 1) from (1, 1)
             } else if (nextEchoDirection == null && drone.getDirection() == Direction.SOUTH) {
-                action = drone.head(Direction.EAST);
+                action = drone.head(Direction.EAST); // (3, 3)
                 return action;
             } else if (nextEchoDirection == null && drone.getDirection() == Direction.EAST) {
-                action = drone.head(Direction.SOUTH);
+                action = drone.head(Direction.SOUTH); // (4, 4)
                 numOfRightTurns++;
                 return action;
             }
         } else if (numOfRightTurns == 2) {
             if (drone.getDirection() == Direction.SOUTH) {
-                action = drone.head(Direction.WEST);
+                action = drone.head(Direction.WEST); // (3, 5)
                 numOfRightTurns++;
                 return action;
             }
         } else if (numOfRightTurns == 3) {
             if (drone.getDirection() == Direction.WEST && forwardFlyCount == 0) {
-                action = drone.fly();
+                action = drone.fly(); // (2, 5)
                 forwardFlyCount++;
                 return action;
             } else if (drone.getDirection() == Direction.WEST && forwardFlyCount == 1) {
-                action = drone.head(Direction.NORTH);
+                action = drone.head(Direction.NORTH); // (1, 4)
                 numOfRightTurns++;
                 return action;
             }
         } else if (numOfRightTurns == 4) {
             if (drone.getDirection() == Direction.NORTH && forwardFlyCount < 3) {
-                action = drone.fly();
+                action = drone.fly(); // (1, 4) --> (1, 2)
                 forwardFlyCount++;
                 return action;
             } else if (drone.getDirection() == Direction.NORTH && forwardFlyCount == 3) {
-                action = drone.head(Direction.EAST);
+                action = drone.head(Direction.EAST); // (2, 1) if everything works 😭
                 numOfRightTurns++;
                 return action;
             }
