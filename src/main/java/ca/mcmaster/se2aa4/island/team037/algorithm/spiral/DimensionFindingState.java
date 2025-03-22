@@ -1,14 +1,14 @@
-package ca.mcmaster.se2aa4.island.teamXXX.algorithm.spiral;
+package ca.mcmaster.se2aa4.island.team037.algorithm.spiral;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ca.mcmaster.se2aa4.island.teamXXX.actions.Action;
-import ca.mcmaster.se2aa4.island.teamXXX.algorithm.State;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
-import ca.mcmaster.se2aa4.island.teamXXX.result.EchoActionResult;
+import ca.mcmaster.se2aa4.island.team037.actions.Action;
+import ca.mcmaster.se2aa4.island.team037.algorithm.State;
+import ca.mcmaster.se2aa4.island.team037.drone.Direction;
+import ca.mcmaster.se2aa4.island.team037.drone.Drone;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
+import ca.mcmaster.se2aa4.island.team037.result.EchoActionResult;
 
 public class DimensionFindingState extends State {
     private final Logger logger = LogManager.getLogger();
