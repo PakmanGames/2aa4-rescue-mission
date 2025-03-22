@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.drone;
+package ca.mcmaster.se2aa4.island.team037.drone;
 
 /**
  * Represents a Point of Interest (POI) on the island. A POI is a location with

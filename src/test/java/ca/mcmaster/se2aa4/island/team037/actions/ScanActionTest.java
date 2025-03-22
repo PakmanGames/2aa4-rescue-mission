@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.teamXXX.actions;
+package ca.mcmaster.se2aa4.island.team037.actions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,12 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Direction;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Drone;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.POI;
-import ca.mcmaster.se2aa4.island.teamXXX.drone.Position;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ActionResult;
-import ca.mcmaster.se2aa4.island.teamXXX.result.ScanActionResultFactory;
+import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
+import ca.mcmaster.se2aa4.island.team037.actions.ActionType;
+import ca.mcmaster.se2aa4.island.team037.actions.ScanAction;
+import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
+import ca.mcmaster.se2aa4.island.team037.actions.ActionType;
+import ca.mcmaster.se2aa4.island.team037.actions.ScanAction;
+import ca.mcmaster.se2aa4.island.team037.drone.Direction;
+import ca.mcmaster.se2aa4.island.team037.drone.Drone;
+import ca.mcmaster.se2aa4.island.team037.drone.POI;
+import ca.mcmaster.se2aa4.island.team037.drone.Position;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
+import ca.mcmaster.se2aa4.island.team037.result.ScanActionResultFactory;
 
 public class ScanActionTest {
     private Drone drone;

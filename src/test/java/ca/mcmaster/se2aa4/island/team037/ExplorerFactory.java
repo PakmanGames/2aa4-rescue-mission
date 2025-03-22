@@ -1,6 +1,10 @@
-package ca.mcmaster.se2aa4.island.teamXXX;
+package ca.mcmaster.se2aa4.island.team037;
 
 import org.json.JSONObject;
+
+import ca.mcmaster.se2aa4.island.team037.Explorer;
+
+import ca.mcmaster.se2aa4.island.team037.Explorer;
 
 public class ExplorerFactory {
 
