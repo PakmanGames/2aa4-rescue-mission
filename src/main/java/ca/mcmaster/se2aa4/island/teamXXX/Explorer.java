@@ -33,7 +33,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("Battery level is {}", batteryLevel);
 
         drone = new Drone(Direction.getFromAbbr(direction), batteryLevel, new ActionManager());
-        drone.setPosition(new Position(80, 80));
+        drone.setPosition(new Position(1, 1));
         algorithm = new SpiralSearchDroneAlgorithm(drone);
 
         logger.info("** Initialization complete");
