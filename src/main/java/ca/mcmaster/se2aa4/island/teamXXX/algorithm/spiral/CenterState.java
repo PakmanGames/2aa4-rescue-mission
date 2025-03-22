@@ -29,7 +29,6 @@ public class CenterState extends State {
     @Override
     public State nextState(ActionResult result) {
         Drone drone = getDrone();
-        drone.expend(result.getCost());
         action.consume(drone, result);
         return isCenter() ? new SpiralState(getDrone()) : this;
     }
