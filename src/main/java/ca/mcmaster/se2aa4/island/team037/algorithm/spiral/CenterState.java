@@ -19,6 +19,7 @@ public class CenterState extends State {
         super(drone);
         this.centerX = (int) Math.ceil(mapWidth / 2.0);
         this.centerY = (int) Math.ceil(mapHeight / 2.0);
+        this.action = drone.head(Direction.NORTH);
     }
 
     public boolean isCenter() {
@@ -36,6 +37,7 @@ public class CenterState extends State {
         action.consume(drone, result);
         return isCenter() ? new SpiralState(getDrone()) : this;
     }
+
 
     @Override
     public Action getAction() {

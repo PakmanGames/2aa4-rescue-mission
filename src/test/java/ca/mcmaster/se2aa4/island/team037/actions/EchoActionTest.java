@@ -1,8 +1,8 @@
 package ca.mcmaster.se2aa4.island.team037.actions;
 
 import org.json.JSONObject;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 import ca.mcmaster.se2aa4.island.team037.drone.DroneFactory;
