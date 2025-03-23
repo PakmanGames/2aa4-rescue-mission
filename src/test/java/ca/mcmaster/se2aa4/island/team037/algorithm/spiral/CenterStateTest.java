@@ -27,6 +27,7 @@ public class CenterStateTest {
         drone = new Drone(Direction.NORTH, 100, new ActionManager());
         drone.getMapInfo().setDimensions(10, 10);
         drone.setPosition(new Position(0, 0));
+        centerState = new CenterState(drone);
     }
 
     @Test
@@ -50,7 +51,7 @@ public class CenterStateTest {
 
         Action action = centerState.getAction();
         assertNotNull(action);
-        assertEquals(ActionType.HEADING, action.type());
+        assertEquals(ActionType.FLY, action.type());
     }
 
     @Test
