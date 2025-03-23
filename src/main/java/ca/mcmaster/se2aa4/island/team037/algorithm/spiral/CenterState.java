@@ -27,8 +27,8 @@ public class CenterState extends State {
     public boolean isCenter() {
         int currentX = getDrone().getPosition().getX();
         int currentY = getDrone().getPosition().getY();
-        int deltaX = centerX - currentX + 3;
-        int deltaY = centerY - currentY + 3;
+        int deltaX = centerX - currentX;
+        int deltaY = centerY - currentY;
 
         return Math.abs(deltaX) <= 2 && Math.abs(deltaY) <= 2;
     }
