@@ -15,8 +15,10 @@ public class CenterState extends State {
     private int centerY;
     private Action action;
 
-    public CenterState(Drone drone, int mapHeight, int mapWidth) {
+    public CenterState(Drone drone) {
         super(drone);
+        int mapWidth = drone.getMapInfo().getWidth();
+        int mapHeight = drone.getMapInfo().getHeight();
         this.centerX = (int) Math.ceil(mapWidth / 2.0);
         this.centerY = (int) Math.ceil(mapHeight / 2.0);
         this.action = drone.head(Direction.NORTH);
@@ -25,8 +27,8 @@ public class CenterState extends State {
     public boolean isCenter() {
         int currentX = getDrone().getPosition().getX();
         int currentY = getDrone().getPosition().getY();
-        int deltaX = centerX - currentX;
-        int deltaY = centerY - currentY;
+        int deltaX = centerX - currentX + 3;
+        int deltaY = centerY - currentY + 3;
 
         return Math.abs(deltaX) <= 2 && Math.abs(deltaY) <= 2;
     }
@@ -38,7 +40,6 @@ public class CenterState extends State {
         return isCenter() ? new SpiralState(getDrone()) : this;
     }
 
-
     @Override
     public Action getAction() {
         Drone drone = getDrone();
@@ -46,12 +47,12 @@ public class CenterState extends State {
         int currentY = drone.getPosition().getY();
 
         int deltaX = centerX - currentX;
-        int deltaY = centerY - currentY;
-        
+        int deltaY = -(centerY - currentY);
+
         Direction currentDirection = drone.getDirection();
 
         if (Math.abs(deltaX) > 2 && Math.abs(deltaY) > 2) {
-            if (deltaX > 0 && deltaY > 0) { // drone is at the lower left corner 
+            if (deltaX > 0 && deltaY > 0) { // drone is at the lower left corner
                 if (currentDirection == Direction.NORTH || currentDirection == Direction.WEST) {
                     action = drone.head(currentDirection.right());
                 } else if (currentDirection == Direction.SOUTH || currentDirection == Direction.EAST) {
@@ -63,7 +64,7 @@ public class CenterState extends State {
                 } else if (currentDirection == Direction.NORTH || currentDirection == Direction.EAST) {
                     action = drone.head(currentDirection.left());
                 }
-            } else if (deltaX > 0 && deltaY < 0){ // drone is at the lower right corner 
+            } else if (deltaX > 0 && deltaY < 0) { // drone is at the lower right corner
                 if (currentDirection == Direction.EAST || currentDirection == Direction.NORTH) {
                     action = drone.head(currentDirection.right());
                 } else if (currentDirection == Direction.SOUTH || currentDirection == Direction.WEST) {
@@ -78,10 +79,10 @@ public class CenterState extends State {
             }
         }
 
-        if(deltaX <= 2) {
+        if (deltaX <= 2) {
             if (deltaY > 0) { // drone is south to center
                 if (currentDirection == Direction.NORTH) {
-                 action = drone.fly();
+                    action = drone.fly();
                 } else { // The direction must be WEST or EAST
                     if (currentDirection == Direction.EAST) {
                         action = drone.head(currentDirection.left());
@@ -91,7 +92,7 @@ public class CenterState extends State {
                 }
             } else { // drone is NORTH to the center
                 if (currentDirection == Direction.SOUTH) {
-                 action = drone.fly();
+                    action = drone.fly();
                 } else { // The direction must be WEST or EAST
                     if (currentDirection == Direction.EAST) {
                         action = drone.head(currentDirection.right());
@@ -103,7 +104,7 @@ public class CenterState extends State {
         } else if (deltaY <= 2) {
             if (deltaX > 0) { // drone is WEST to center
                 if (currentDirection == Direction.EAST) {
-                 action = drone.fly();
+                    action = drone.fly();
                 } else { // The direction must be NORTH or SOUTH
                     if (currentDirection == Direction.SOUTH) {
                         action = drone.head(currentDirection.left());
@@ -111,10 +112,9 @@ public class CenterState extends State {
                         action = drone.head(currentDirection.right());
                     }
                 }
-            }
-            else { // drone is EAST to the center
+            } else { // drone is EAST to the center
                 if (currentDirection == Direction.NORTH) {
-                 action = drone.fly();
+                    action = drone.fly();
                 } else { // The direction must be NORTH or SOUTH
                     if (currentDirection == Direction.SOUTH) {
                         action = drone.head(currentDirection.right());
@@ -126,6 +126,6 @@ public class CenterState extends State {
 
         }
 
-       return action;
+        return action;
     }
 }

@@ -4,6 +4,7 @@ import ca.mcmaster.se2aa4.island.team037.actions.Action;
 import ca.mcmaster.se2aa4.island.team037.actions.ActionType;
 import ca.mcmaster.se2aa4.island.team037.algorithm.State;
 import ca.mcmaster.se2aa4.island.team037.drone.Drone;
+import ca.mcmaster.se2aa4.island.team037.drone.Position;
 import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
 public class SpiralState extends State {
@@ -11,13 +12,14 @@ public class SpiralState extends State {
     private int currentPadding;
     private Action action;
     private boolean second;
+    private boolean scan;
 
     public SpiralState(Drone drone) {
         super(drone);
         padding = 0;
         currentPadding = 0;
-        action = drone.scan();
         second = true;
+        scan = true;
     }
 
     @Override
@@ -32,12 +34,25 @@ public class SpiralState extends State {
             return new StopState(drone);
         }
 
+        Position position = drone.getPosition();
+
+        if (position.getX() < 6 || position.getY() < 6 || position.getX() > drone.getMapInfo().getWidth() - 6
+                || position.getY() > drone.getMapInfo().getHeight() - 6) {
+            return new StopState(drone);
+        }
+
         return this;
     }
 
     @Override
     public Action getAction() {
         Drone drone = getDrone();
+
+        if (scan) {
+            scan = false;
+            return action = drone.scan();
+        }
+
         Action nextAction;
         if (action.type() == ActionType.SCAN) {
             if (currentPadding == 0) {

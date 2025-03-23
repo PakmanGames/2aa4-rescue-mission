@@ -25,26 +25,25 @@ public class CenterStateTest {
     @BeforeEach
     public void setUp() {
         drone = new Drone(Direction.NORTH, 100, new ActionManager());
-        centerState = new CenterState(drone, 10, 10);
+        drone.getMapInfo().setDimensions(10, 10);
         drone.setPosition(new Position(0, 0));
     }
 
     @Test
     public void testIsCenter() {
-       
-        drone.getPosition().setX(5);//drone is born at center
+
+        drone.getPosition().setX(5);// drone is born at center
         drone.getPosition().setY(5);
         assertTrue(centerState.isCenter());
 
-        
-        drone.getPosition().setX(0);//drone is born at corner
+        drone.getPosition().setX(0);// drone is born at corner
         drone.getPosition().setY(0);
         assertFalse(centerState.isCenter());
     }
 
     @Test
     public void testGetActionHeading() {
-        
+
         drone.getPosition().setX(1);
         drone.getPosition().setY(1);
         drone.setDirection(Direction.EAST);
@@ -56,7 +55,7 @@ public class CenterStateTest {
 
     @Test
     public void testGetActionFly() {
-        
+
         drone.getPosition().setX(1);
         drone.getPosition().setY(5);
         drone.setDirection(Direction.EAST);
@@ -66,14 +65,13 @@ public class CenterStateTest {
         assertEquals(ActionType.FLY, action.type());
     }
 
-
     @Test
     public void testNextState() {
         JSONObject json = new JSONObject();
         json.put("cost", 1);
         json.put("status", "OK");
         JSONObject extras = new JSONObject();
-        extras.put("someKey", "someValue"); 
+        extras.put("someKey", "someValue");
         json.put("extras", extras);
         ActionResult result = new ActionResult(json);
 

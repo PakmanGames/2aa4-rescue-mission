@@ -45,7 +45,7 @@ public class DimensionFindingState extends State {
         logger.info("STARTING DIMENSION FINDING STATE CHECK");
         Drone drone = getDrone();
         action.consume(drone, result);
-        
+
         if (result.isOk() && result.getEchoResult() instanceof EchoActionResult) {
             EchoActionResult echoResult = result.getEchoResult();
             if (this.currentEchoDirection == Direction.SOUTH) {
@@ -58,7 +58,8 @@ public class DimensionFindingState extends State {
                 } else {
                     this.length++;
                 }
-            } else if (this.currentEchoDirection == Direction.NORTH && this.nextEchoDirection == Direction.WEST && this.numOfRightTurns == 1) {
+            } else if (this.currentEchoDirection == Direction.NORTH && this.nextEchoDirection == Direction.WEST
+                    && this.numOfRightTurns == 1) {
                 this.width = echoResult.range();
             } else if (this.currentEchoDirection == Direction.WEST && this.nextEchoDirection == Direction.EAST) {
                 this.oppositeEchoDistance = echoResult.range();
@@ -77,7 +78,8 @@ public class DimensionFindingState extends State {
             logger.info("TRANSITIONING TO CENTER STATE");
             logger.info("Length: {}", this.length);
             logger.info("Width: {}", this.width);
-            return new CenterState(getDrone(), this.length, this.width);
+            drone.getMapInfo().setDimensions(length * 3, width * 3);
+            return new CenterState(getDrone());
         }
         logger.info("NOT READY TO TRANSITION TO CENTER STATE YET");
         logger.info("DimensionFindingState: numOfRightTurns = {}", this.numOfRightTurns);
@@ -90,7 +92,7 @@ public class DimensionFindingState extends State {
     public Action getAction() {
         logger.info("GETTING ACTION");
         Drone drone = getDrone();
-        
+
         if (action != null) {
             return action;
         }
@@ -112,8 +114,7 @@ public class DimensionFindingState extends State {
                 this.numOfRightTurns++;
                 return this.action;
             }
-        }
-        else if (this.numOfRightTurns == 1) {
+        } else if (this.numOfRightTurns == 1) {
             if (this.nextEchoDirection == null) {
                 this.nextEchoDirection = drone.getDirection().right(); // WEST
                 this.action = drone.echo(this.nextEchoDirection);
@@ -123,7 +124,7 @@ public class DimensionFindingState extends State {
                 this.nextEchoDirection = drone.getDirection().left(); // EAST
                 this.action = drone.echo(this.nextEchoDirection);
                 return this.action;
-            } 
+            }
         }
 
         logger.info("NO ACTION TO RETURN");
