@@ -10,7 +10,7 @@ public record EchoAction(Direction heading) implements Action {
 
     @Override
     public void consume(Drone drone, ActionResult result) {
-        drone.expend(result.getCost());
+        drone.consumeEcho(heading, result);
     }
 
     @Override

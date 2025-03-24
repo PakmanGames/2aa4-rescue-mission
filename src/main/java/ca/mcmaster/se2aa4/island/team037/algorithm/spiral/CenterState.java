@@ -10,7 +10,6 @@ import ca.mcmaster.se2aa4.island.team037.drone.Drone;
 import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
 public class CenterState extends State {
-    private final Logger logger = LogManager.getLogger();
     private int centerX;
     private int centerY;
     private Action action;
@@ -36,7 +35,7 @@ public class CenterState extends State {
     @Override
     public State nextState(ActionResult result) {
         Drone drone = getDrone();
-        action.consume(drone, result);
+        drone.consume(action, result);
         return isCenter() ? new SpiralState(getDrone()) : this;
     }
 

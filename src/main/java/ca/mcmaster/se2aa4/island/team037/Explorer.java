@@ -11,6 +11,7 @@ import org.json.JSONTokener;
 import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
 import ca.mcmaster.se2aa4.island.team037.algorithm.DroneAlgorithm;
 import ca.mcmaster.se2aa4.island.team037.algorithm.spiral.SpiralSearchDroneAlgorithm;
+import ca.mcmaster.se2aa4.island.team037.drone.BaseDrone;
 import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 import ca.mcmaster.se2aa4.island.team037.drone.Drone;
 import ca.mcmaster.se2aa4.island.team037.drone.Position;
@@ -32,7 +33,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
 
-        drone = new Drone(Direction.getFromAbbr(direction), batteryLevel, new ActionManager());
+        drone = new BaseDrone(Direction.getFromAbbr(direction), batteryLevel, new ActionManager());
         drone.setPosition(new Position(1, 1));
         algorithm = new SpiralSearchDroneAlgorithm(drone);
 

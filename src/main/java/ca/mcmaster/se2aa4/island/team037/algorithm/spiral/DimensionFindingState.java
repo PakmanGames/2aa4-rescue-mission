@@ -44,7 +44,7 @@ public class DimensionFindingState extends State {
     public State nextState(ActionResult result) {
         logger.info("STARTING DIMENSION FINDING STATE CHECK");
         Drone drone = getDrone();
-        action.consume(drone, result);
+        drone.consume(action, result);
 
         if (result.isOk() && result.getEchoResult() instanceof EchoActionResult) {
             EchoActionResult echoResult = result.getEchoResult();

@@ -34,7 +34,7 @@ public class StartState extends State {
     @Override
     public State nextState(ActionResult result) {
         Drone drone = getDrone();
-        action.consume(drone, result);
+        drone.consume(action, result);
 
         Direction currentDirection = drone.getDirection();
 
@@ -45,8 +45,6 @@ public class StartState extends State {
             dimensions.put(currentDirection, result.getEchoResult().range());
             return this;
         } else if (action.type() == ActionType.HEADING) {
-            // If you are moving to the next direction
-            drone.setDirection(currentDirection);
 
             if (dimensions.size() == 4) {
                 // Update the position of the drone and move to grid search state

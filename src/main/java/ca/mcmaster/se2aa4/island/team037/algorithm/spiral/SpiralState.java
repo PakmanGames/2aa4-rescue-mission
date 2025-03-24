@@ -27,7 +27,7 @@ public class SpiralState extends State {
         // If the state still has work to be done then it should go to the current state
         // Otherwise it should go to the StopState
         Drone drone = getDrone();
-        action.consume(drone, result);
+        drone.consume(action, result);
 
         // Ensure the battery is a good amount
         if (drone.getBatteryLevel() < 35) {

@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.mcmaster.se2aa4.island.team037.drone.BaseDrone;
 import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 import ca.mcmaster.se2aa4.island.team037.drone.Drone;
 import ca.mcmaster.se2aa4.island.team037.drone.POI;
@@ -22,7 +23,7 @@ public class ScanActionTest {
 
     @BeforeEach
     public void initialize() {
-        drone = new Drone(Direction.NORTH, 100, new ActionManager());
+        drone = new BaseDrone(Direction.NORTH, 100, new ActionManager());
         drone.setPosition(new Position(0, 0));
         factory = new ScanActionResultFactory();
     }
@@ -44,7 +45,7 @@ public class ScanActionTest {
         JSONObject extras = new JSONObject();
         extras.put("creeks", factory.createCreeks());
         extras.put("sites", factory.createSites());
-        extras.put("biomes",List.of());
+        extras.put("biomes", List.of());
         json.put("extras", extras);
         ActionResult result = new ActionResult(json);
 
@@ -52,6 +53,7 @@ public class ScanActionTest {
         assertTrue(drone.getMapInfo().hasCreeks());
         assertTrue(drone.getMapInfo().hasSite());
 
-        assertEquals(factory.createCreeks(), drone.getMapInfo().getCreeks().stream().map(POI::id).collect(Collectors.toList()));
+        assertEquals(factory.createCreeks(),
+                drone.getMapInfo().getCreeks().stream().map(POI::id).collect(Collectors.toList()));
     }
 }

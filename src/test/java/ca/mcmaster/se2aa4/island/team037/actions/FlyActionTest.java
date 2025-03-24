@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ca.mcmaster.se2aa4.island.team037.drone.BaseDrone;
 import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 import ca.mcmaster.se2aa4.island.team037.drone.Drone;
 import ca.mcmaster.se2aa4.island.team037.drone.Position;
@@ -16,7 +17,7 @@ public class FlyActionTest {
 
     @BeforeEach
     public void initialize() {
-        drone = new Drone(Direction.NORTH, 100, new ActionManager());
+        drone = new BaseDrone(Direction.NORTH, 100, new ActionManager());
         drone.setPosition(new Position(0, 0));
     }
 

@@ -2,7 +2,6 @@ package ca.mcmaster.se2aa4.island.team037.actions;
 
 import org.json.JSONObject;
 
-import ca.mcmaster.se2aa4.island.team037.drone.Direction;
 import ca.mcmaster.se2aa4.island.team037.drone.Drone;
 import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
@@ -19,24 +18,7 @@ public class FlyAction implements Action {
     }
 
     public void consume(Drone drone, ActionResult result) {
-        drone.expend(result.getCost());
-        Direction direction = drone.getDirection();
-
-        switch (direction) {
-            case NORTH:
-                drone.getPosition().setY(drone.getPosition().getY() - 3);
-                break;
-            case EAST:
-                drone.getPosition().setX(drone.getPosition().getX() + 3);
-                break;
-            case SOUTH:
-                drone.getPosition().setY(drone.getPosition().getY() + 3);
-                break;
-            case WEST:
-                drone.getPosition().setX(drone.getPosition().getX() - 3);
-                break;
-        }
-
+        drone.consumeFly(result);
     }
 
 }

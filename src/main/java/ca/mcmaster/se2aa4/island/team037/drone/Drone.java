@@ -1,71 +1,42 @@
 package ca.mcmaster.se2aa4.island.team037.drone;
 
 import ca.mcmaster.se2aa4.island.team037.actions.Action;
-import ca.mcmaster.se2aa4.island.team037.actions.ActionManager;
+import ca.mcmaster.se2aa4.island.team037.result.ActionResult;
 
-public class Drone {
-    private Direction direction;
-    private Position position;
-    private int batteryLevel;
-    private ActionManager actionManager;
-    private MapInfo mapInfo;
-
-    public Drone(Direction initialDirection, int batteryLevel, ActionManager actionManager) {
-        this.direction = initialDirection;
-        this.batteryLevel = batteryLevel;
-        this.actionManager = actionManager;
-        this.mapInfo = new MapInfo();
-    }
+public interface Drone {
 
     // Gets the direction of the drone
-    public Direction getDirection() {
-        return direction;
-    }
-
-    public void setDirection(Direction direction) {
-        this.direction = direction;
-    }
+    public Direction getDirection();
 
     // Gets the current position of the drone
-    public Position getPosition() {
-        return position;
-    }
+    public Position getPosition();
 
-    // Sets the initial position of the drone
-    public void setPosition(Position position) {
-        this.position = position;
-    }
+    public void setPosition(Position position);
 
     // Gets the battery level of the drone
-    public int getBatteryLevel() {
-        return batteryLevel;
-    }
+    public int getBatteryLevel();
 
-    public MapInfo getMapInfo() {
-        return mapInfo;
-    }
+    public MapInfo getMapInfo();
 
-    public Action fly() {
-        return actionManager.createFlyCommand();
-    }
+    public Action fly();
 
-    public Action scan() {
-        return actionManager.createScanCommand();
-    }
+    public void consumeFly(ActionResult result);
 
-    public Action echo(Direction heading) {
-        return actionManager.createEchoCommand(heading);
-    }
+    public Action scan();
 
-    public Action head(Direction heading) {
-        return actionManager.createHeadingCommand(heading);
-    }
+    public void consumeScan(ActionResult result);
 
-    public Action stop() {
-        return actionManager.createStopCommand();
-    }
+    public Action echo(Direction heading);
 
-    public void expend(int cost) {
-        batteryLevel -= cost;
-    }
+    public void consumeEcho(Direction direction, ActionResult result);
+
+    public Action head(Direction heading);
+
+    public void consumeHead(Direction direction, ActionResult result);
+
+    public Action stop();
+
+    public void consumeStop(ActionResult result);
+
+    public void consume(Action action, ActionResult result);
 }
