@@ -22,7 +22,7 @@ public class CenterStateTest {
     private CenterState centerState;
 
     public void setUp(Direction direction, Position position) {
-        drone = new BaseDrone(Direction.NORTH, 100, new ActionManager());
+        drone = new BaseDrone(direction, 100, new ActionManager());
         drone.getMapInfo().setDimensions(10, 10);
         drone.setPosition(position);
         centerState = new CenterState(drone);
@@ -61,6 +61,7 @@ public class CenterStateTest {
 
     @Test
     public void testNextState() {
+        setUp(Direction.NORTH, new Position(0, 0));
         JSONObject json = new JSONObject();
         json.put("cost", 1);
         json.put("status", "OK");
